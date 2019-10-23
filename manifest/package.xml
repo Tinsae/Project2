@@ -2,7 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>DataCreator</members>
-        <name>ApexClass</names>
+        <name>ApexClass</name>
     </types>
     <types>
         <members>Appointment__c</members>

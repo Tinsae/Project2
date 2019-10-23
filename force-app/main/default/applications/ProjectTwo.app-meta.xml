@@ -17,5 +17,5 @@
     <tabs>PossibleCondition__c</tabs>
     <tabs>Symptom__c</tabs>
     <uiType>Lightning</uiType>
-    <!--<utilityBar>Project_Two_UtilityBar</utilityBar>-->
+    <!--<utilityBar>ProjectTwoUtilityBar</utilityBar>-->
 </CustomApplication>
