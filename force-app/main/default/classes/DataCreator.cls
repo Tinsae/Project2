@@ -163,12 +163,6 @@ public class DataCreator {
             specialties.add(new Specialty__c(Doctor__c = doctors[i].Id
                                             ,Condition__c = conditions[i].Id));
         }
-        /*for (Doctor__c doctor : doctors) {
-            for (Condition__c condition : conditions) {
-                specialties.add(new Specialty__c(Doctor__c = doctor.Id
-                               					,Condition__c = condition.Id));
-            }
-        }*/
         insert specialties;
     }
 }
