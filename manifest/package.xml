@@ -2,6 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>DataCreator</members>
+        <members>HomePageController</members>
         <members>InfermedicaTester</members>
         <name>ApexClass</name>
     </types>
@@ -42,6 +43,10 @@
     <types>
         <members>Admin</members>
         <name>Profile</name>
+    </types>
+    <types>
+        <members>HomePage</members>
+        <name>ApexPage</name>
     </types>
     <version>46.0</version>
 </Package>
