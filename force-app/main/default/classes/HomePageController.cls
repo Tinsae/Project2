@@ -5,8 +5,13 @@ public with sharing class HomePageController {
 
     // Get the current time in order to display past/future appointments
     // that were scheduled for today
-    private Date today = Date.newInstance(2019, 10, 31);
     private Datetime now = Datetime.now();
+
+    private Integer years = now.year();
+    private Integer months = now.month();
+    private Integer days = now.day();
+    private Date today = Date.newInstance(years, months, days);
+
     private Integer hours = now.hour();
     private Integer minutes = now.minute();
     private Integer seconds = now.second();
@@ -21,12 +26,12 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
-                ,Patient__c
+                ,Contact__c
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Patient__c =: ApexPages.currentPage().getParameters().get('Id')
-                AND Date__c < TODAY) 
-                OR (Date__c = TODAY AND StartTime__c <: currentTime)
+            WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id'))
+                AND ((Date__c < TODAY) 
+                OR (Date__c = TODAY AND StartTime__c <: currentTime))
         ];
 
         futureAppointments = [
@@ -36,20 +41,35 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
-                ,Patient__c
+                ,Contact__c
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Patient__c =: ApexPages.currentPage().getParameters().get('Id')
-                AND Date__c > TODAY)
-                OR (Date__c = TODAY AND StartTime__c >: currentTime)
+            WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id'))
+                AND ((Date__c > TODAY)
+                OR (Date__c = TODAY AND StartTime__c >: currentTime))
         ];
     }
 
-    public List<Appointment__c> getPastAppointments() {        
+    public List<Appointment__c> getPastAppointments() {  
+        for (Appointment__c appointment : pastAppointments) {
+            if (appointment.Date__c == today) {
+                ApexPages.addMessage(new ApexPages.Message(
+                    ApexPages.Severity.INFO, 'You had an appointment today.')); 
+                break;
+            }
+        }    
+         
         return pastAppointments;
     }
 
     public List<Appointment__c> getFutureAppointments() {
+        for (Appointment__c appointment : futureAppointments) {
+            if (appointment.Date__c == today) {
+                ApexPages.addMessage(new ApexPages.Message(
+                    ApexPages.Severity.INFO, 'You have an appointment today.')); 
+                break;
+            }
+        }    
         return futureAppointments;
     }
 }
