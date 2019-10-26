@@ -18,8 +18,30 @@
                 <apex:commandButton value="Book an Appointment" />
             </apex:pageBlockButtons>
 
-            <!-- vertical -->
-            <apex:pageBlockSection title="Upcoming Appointments">
+            <!-- Past and future appointments tables -->
+            <apex:pageBlockSection columns="2">      
+                <!-- side-by-side -->
+                <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
+                    <apex:facet name="caption">Upcoming Appointments</apex:facet>
+                    <apex:column value="{!appointment.Date__c}" />
+                    <apex:column value="{!appointment.Location__c}" />
+                    <apex:column value="{!appointment.StartTime__c}" />
+                    <apex:column value="{!appointment.Doctor__c}" />
+                    <apex:column value="{!appointment.Contact__c}" />
+                    <apex:column value="{!appointment.Cancelled__c}" />
+                </apex:pageBlockTable>
+                <apex:pageBlockTable value="{!pastAppointments}" var="appointment">
+                    <apex:facet name="caption">Past Appointments</apex:facet>
+                    <apex:column value="{!appointment.Date__c}" />
+                    <apex:column value="{!appointment.Location__c}" />
+                    <apex:column value="{!appointment.StartTime__c}" />
+                    <apex:column value="{!appointment.Doctor__c}" />
+                    <apex:column value="{!appointment.Contact__c}" />
+                    <apex:column value="{!appointment.Cancelled__c}" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection> 
+
+            <!-- <apex:pageBlockSection title="Upcoming Appointments" columns="2">
             <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
                 <apex:column value="{!appointment.Date__c}" />
                 <apex:column value="{!appointment.Location__c}" />
@@ -36,7 +58,7 @@
                     <apex:column value="{!appointment.Doctor__c}" />
                     <apex:column value="{!appointment.Contact__c}" />
                 </apex:pageBlockTable>
-            </apex:pageBlockSection> 
+            </apex:pageBlockSection>  -->
         </apex:pageBlock>
     </apex:form>
 
