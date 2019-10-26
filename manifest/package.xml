@@ -3,6 +3,7 @@
     <types>
         <members>DataCreator</members>
         <members>HomePageController</members>
+        <members>InfermedicaTester</members>
         <name>ApexClass</name>
     </types>
     <types>
