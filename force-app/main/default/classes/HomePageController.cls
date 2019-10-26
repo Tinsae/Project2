@@ -7,6 +7,8 @@ public with sharing class HomePageController {
     // that were scheduled for today
     private Date today = Date.newInstance(2019, 10, 31);
     private Datetime now = Datetime.now();
+    // get year, month, day from now to use just one query and organize into 
+    // two lists
     private Integer hours = now.hour();
     private Integer minutes = now.minute();
     private Integer seconds = now.second();
@@ -21,10 +23,10 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
-                ,Patient__c
+                ,Contact__c
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Patient__c =: ApexPages.currentPage().getParameters().get('Id')
+            WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id')
                 AND Date__c < TODAY) 
                 OR (Date__c = TODAY AND StartTime__c <: currentTime)
         ];
@@ -36,13 +38,15 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
-                ,Patient__c
+                ,Contact__c
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Patient__c =: ApexPages.currentPage().getParameters().get('Id')
+            WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id')
                 AND Date__c > TODAY)
                 OR (Date__c = TODAY AND StartTime__c >: currentTime)
         ];
+
+        
     }
 
     public List<Appointment__c> getPastAppointments() {        

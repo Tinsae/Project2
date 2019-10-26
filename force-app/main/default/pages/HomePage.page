@@ -1,4 +1,10 @@
 <apex:page controller="HomePageController">
+    <script> 
+        function alertUser(message) {
+            alert(message);
+        }
+    </script>
+    <body onload="alertUser('Hi')"></body>
     <!-- Header image -->
     <apex:pageBlock>
         <apex:image value="{!$Resource.pillHeaderSalesforce091619}" width="100%" height="300px" />
@@ -9,6 +15,7 @@
         <apex:pageBlock title="My Appointments">
 
             <apex:pageBlockButtons location="top">
+                <!-- Need to implement action="goToAppointmentWizard" -->
                 <apex:commandButton value="Book an Appointment" />
             </apex:pageBlockButtons>
         
@@ -42,7 +49,7 @@
                 <apex:column value="{!appointment.Location__c}" />
                 <apex:column value="{!appointment.StartTime__c}" />
                 <apex:column value="{!appointment.Doctor__c}" />
-                <apex:column value="{!appointment.Patient__c}" />
+                <apex:column value="{!appointment.Contact__c}" />
             </apex:pageBlockTable>
             </apex:pageBlockSection>
             <apex:pageBlockSection title="Past Appointments">
@@ -51,7 +58,7 @@
                     <apex:column value="{!appointment.Location__c}" />
                     <apex:column value="{!appointment.StartTime__c}" />
                     <apex:column value="{!appointment.Doctor__c}" />
-                    <apex:column value="{!appointment.Patient__c}" />
+                    <apex:column value="{!appointment.Contact__c}" />
                 </apex:pageBlockTable>
             </apex:pageBlockSection> 
         </apex:pageBlock>

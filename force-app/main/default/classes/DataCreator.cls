@@ -2,12 +2,14 @@ public class DataCreator {
     public static void createData() {
 		deleteExistingData();
         
-        createPatients();
+        createAccount();
+        //createPatients();
+        createContacts();
         createDoctors();
         createConditions();
         
         // Lookup(Doctor)
-        // Lookup(Patient)
+        // Lookup(Contact)
         createAppointments();
         
         // Lookup(Appointment)
@@ -17,74 +19,115 @@ public class DataCreator {
         // Lookup(Doctor)
         // Lookup(Condition)
         createSpecialties();
+
+        //createSymptoms();
     }
     
     private static void deleteExistingData() {
-                deleteExistingPossibleConditions();
+        deleteExistingPossibleConditions();
         deleteExistingAppointments();
-
         deleteExistingSpecialties();
         deleteExistingConditions();
         deleteExistingSymptoms();
-        deleteExistingPatients();
+        //deleteExistingPatients();
+        deleteExistingContacts();
+        deleteExistingAccount();
         deleteExistingDoctors();
     }
     
     private static void deleteExistingSymptoms() { delete [SELECT Id FROM Symptom__c]; }
-    private static void deleteExistingPatients() { delete [SELECT Id FROM Patient__c]; }
+    private static void deleteExistingAccount() { delete [SELECT Id FROM Account]; }
+    private static void deleteExistingContacts() { delete [SELECT Id FROM Contact]; }
+    //private static void deleteExistingPatients() { delete [SELECT Id FROM Patient__c]; }
     private static void deleteExistingAppointments() { delete [SELECT Id FROM Appointment__c]; }
     private static void deleteExistingDoctors() { delete [SELECT Id FROM Doctor__c]; }
     private static void deleteExistingSpecialties() { delete [SELECT Id FROM Specialty__c]; }
     private static void deleteExistingPossibleConditions() { delete [SELECT Id FROM PossibleCondition__c]; }
     private static void deleteExistingConditions() { delete [SELECT Id FROM Condition__c]; }
     
-    private static void createPatients() {
-        
-        List<Patient__c> patients = new List<Patient__c>();
-        
-        patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1945, 01, 01)
-                                   ,Gender__c = 'Male'
-                                   ,Name = 'Sylvestor'));
-        patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1947, 12, 07)
-                                   ,Gender__c = 'Female'
-                                   ,Name = 'Adrienne'));
-        patients.add(new patient__c(DateOfBirth__c = Date.newInstance(2016, 10, 31)
-                                   ,Gender__c = 'Male'
-                                   ,Name = 'Mortem'));
-        patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1978, 12, 25)
-                                   ,Gender__c = 'Female'
-                                   ,Name = 'Willma'));
-        
-        insert patients;
-        
+    private static void createAccount() {
+        Account account = new Account(Name = 'Patient Account');
+        insert account;
     }
+
+    private static void createContacts() {
+
+        List<Contact> contacts = new List<Contact>();
+        Account account = [SELECT Id FROM Account LIMIT 1];
+
+        contacts.add(new Contact(Birthdate = Date.newInstance(1945, 01, 01)
+                                ,FirstName = 'Sylvestor'
+                                ,LastName = 'Smallone'
+                                ,Gender__c = 'Male'
+                                ,AccountId = account.Id));
+
+        contacts.add(new Contact(Birthdate = Date.newInstance(1947, 12, 07)
+                                   ,Gender__c = 'Female'
+                                   ,FirstName = 'Adrienne'
+                                   ,LastName = 'Ann'
+                                   ,AccountId = account.Id));
+
+        contacts.add(new Contact(Birthdate = Date.newInstance(2016, 10, 31)
+                                   ,Gender__c = 'Male'
+                                   ,FirstName = 'Mortem'
+                                   ,LastName = 'Hartzell'
+                                   ,AccountId = account.Id));
+
+        contacts.add(new Contact(Birthdate = Date.newInstance(1978, 12, 25)
+                                   ,Gender__c = 'Female'
+                                   ,FirstName = 'Willma'
+                                   ,LastName = 'Willy'
+                                   ,AccountId = account.Id));
+
+        insert contacts;
+    }
+    // private static void createPatients() {
+        
+    //     List<Patient__c> patients = new List<Patient__c>();
+        
+    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1945, 01, 01)
+    //                                ,Gender__c = 'Male'
+    //                                ,Name = 'Sylvestor'));
+    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1947, 12, 07)
+    //                                ,Gender__c = 'Female'
+    //                                ,Name = 'Adrienne'));
+    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(2016, 10, 31)
+    //                                ,Gender__c = 'Male'
+    //                                ,Name = 'Mortem'));
+    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1978, 12, 25)
+    //                                ,Gender__c = 'Female'
+    //                                ,Name = 'Willma'));
+        
+    //     insert patients;
+        
+    // }
     
     private static void createDoctors() {
         
         List<Doctor__c> doctors = new List<Doctor__c>();
         
-        doctors.add(new Doctor__c(DateOfBirth__c = Date.newInstance(1998, 02, 22)
+        doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1998, 02, 22)
                    ,Gender__c = 'Male'
                    ,Name = 'Doctor Acula'
                    ,HourOpen__c = Time.newInstance(8, 0, 0, 0)
                    ,HourClose__c = Time.newInstance(17, 0, 0, 0)
                    ,Location__c = '123 Doc Street Reston, VA 20190'));
         
-        doctors.add(new Doctor__c(DateOfBirth__c = Date.newInstance(1970, 05, 17)
+        doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1970, 05, 17)
                    ,Gender__c = 'Female'
                    ,Name = 'Doctor Agon'
                    ,HourOpen__c = Time.newInstance(9, 0, 0, 0)
                    ,HourClose__c = Time.newInstance(16, 0, 0, 0)
                    ,Location__c = '999 Doctor Ave Billings, MT 59101'));
         
-        doctors.add(new Doctor__c(DateOfBirth__c = Date.newInstance(1998, 02, 22)
+        doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1998, 02, 22)
                    ,Gender__c = 'Male'
                    ,Name = 'Medic Anne'
                    ,HourOpen__c = Time.newInstance(9, 30, 0, 0)
                    ,HourClose__c = Time.newInstance(18, 0, 0, 0)
                    ,Location__c = '123 Doc Street Reston, VA 20190'));
         
-        doctors.add(new Doctor__c(DateOfBirth__c = Date.newInstance(1961, 11, 29)
+        doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1961, 11, 29)
                    ,Gender__c = 'Female'
                    ,Name = 'Doctor Amatic'
                    ,HourOpen__c = Time.newInstance(6, 0, 0, 0)
@@ -120,16 +163,16 @@ public class DataCreator {
     private static void createAppointments() {
         
         List<Appointment__c> appointments = new List<Appointment__c>();
-        List<Patient__c> patients = [SELECT Id FROM Patient__c];
+        List<Contact> patients = [SELECT Id FROM Contact];
         List<Doctor__c> doctors = [SELECT Id FROM Doctor__c];
         Integer hour = 0;
         
-        for (Patient__c patient : patients) {
+        for (Contact patient : patients) {
             for (Doctor__c doctor : doctors) {
 				appointments.add(new Appointment__c(Date__c = Date.today() //Date.newInstance(2019, 10, 31)
                                     				,StartTime__c = Time.newInstance(Math.mod(hour,24), 0, 0, 0)
                                                     ,Location__c = ''
-                                                    ,Patient__c = patient.Id
+                                                    ,Contact__c = patient.Id
                                                     ,Doctor__c = doctor.Id));   
                 hour++;
             }    
@@ -165,4 +208,6 @@ public class DataCreator {
         }
         insert specialties;
     }
+
+    // private static void createSymptoms() {}
 }

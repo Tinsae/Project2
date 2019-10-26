@@ -3,10 +3,9 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Age__c</columns>
-    <columns>DateOfBirth__c</columns>
     <columns>Gender__c</columns>
-    <columns>HourClose__c</columns>
     <columns>HourOpen__c</columns>
+    <columns>HourClose__c</columns>
     <columns>Location__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
