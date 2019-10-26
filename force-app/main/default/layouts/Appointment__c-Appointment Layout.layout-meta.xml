@@ -8,26 +8,30 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Patient__c</field>
+                <behavior>Readonly</behavior>
+                <field>Name</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>StartTime__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Doctor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Contact__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Location__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>StartTime__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -42,10 +46,6 @@
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Name</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
@@ -74,10 +74,6 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>PossibleCondition__c.Appointment__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -99,13 +95,17 @@
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>PossibleCondition__c.Appointment__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h4T000000oBIB</masterLabel>
+        <masterLabel>00h1g000000H2Fd</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

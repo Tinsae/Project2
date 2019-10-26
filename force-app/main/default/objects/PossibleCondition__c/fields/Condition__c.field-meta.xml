@@ -8,6 +8,7 @@
     <relationshipLabel>Possible Conditions</relationshipLabel>
     <relationshipName>PossibleConditions</relationshipName>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

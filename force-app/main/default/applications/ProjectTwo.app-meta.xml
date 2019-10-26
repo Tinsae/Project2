@@ -4,18 +4,18 @@
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Project Two</label>
     <navType>Standard</navType>
     <tabs>Appointment__c</tabs>
-    <tabs>Condition__c</tabs>
+    <tabs>standard-Contact</tabs>
     <tabs>Doctor__c</tabs>
-    <tabs>Patient__c</tabs>
     <tabs>PossibleCondition__c</tabs>
+    <tabs>Condition__c</tabs>
     <tabs>Symptom__c</tabs>
+    <tabs>Specialty__c</tabs>
+    <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
-    <!--<utilityBar>ProjectTwoUtilityBar</utilityBar>-->
 </CustomApplication>
