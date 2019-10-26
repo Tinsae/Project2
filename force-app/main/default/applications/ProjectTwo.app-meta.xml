@@ -18,5 +18,4 @@
     <tabs>Specialty__c</tabs>
     <tabs>standard-Account</tabs>
     <uiType>Lightning</uiType>
-    <!--<utilityBar>Project_Two_UtilityBar</utilityBar>-->
 </CustomApplication>

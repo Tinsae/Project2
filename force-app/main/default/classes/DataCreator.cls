@@ -58,23 +58,23 @@ public class DataCreator {
         contacts.add(new Contact(Birthdate = Date.newInstance(1945, 01, 01)
                                 ,FirstName = 'Sylvestor'
                                 ,LastName = 'Smallone'
-                                ,Gender__c = 'Male'
+                                ,Sex__c = 'Male'
                                 ,AccountId = account.Id));
 
         contacts.add(new Contact(Birthdate = Date.newInstance(1947, 12, 07)
-                                   ,Gender__c = 'Female'
+                                   ,Sex__c = 'Female'
                                    ,FirstName = 'Adrienne'
                                    ,LastName = 'Ann'
                                    ,AccountId = account.Id));
 
         contacts.add(new Contact(Birthdate = Date.newInstance(2016, 10, 31)
-                                   ,Gender__c = 'Male'
+                                   ,Sex__c = 'Male'
                                    ,FirstName = 'Mortem'
                                    ,LastName = 'Hartzell'
                                    ,AccountId = account.Id));
 
         contacts.add(new Contact(Birthdate = Date.newInstance(1978, 12, 25)
-                                   ,Gender__c = 'Female'
+                                   ,Sex__c = 'Female'
                                    ,FirstName = 'Willma'
                                    ,LastName = 'Willy'
                                    ,AccountId = account.Id));
@@ -86,16 +86,16 @@ public class DataCreator {
     //     List<Patient__c> patients = new List<Patient__c>();
         
     //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1945, 01, 01)
-    //                                ,Gender__c = 'Male'
+    //                                ,Sex__c = 'Male'
     //                                ,Name = 'Sylvestor'));
     //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1947, 12, 07)
-    //                                ,Gender__c = 'Female'
+    //                                ,Sex__c = 'Female'
     //                                ,Name = 'Adrienne'));
     //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(2016, 10, 31)
-    //                                ,Gender__c = 'Male'
+    //                                ,Sex__c = 'Male'
     //                                ,Name = 'Mortem'));
     //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1978, 12, 25)
-    //                                ,Gender__c = 'Female'
+    //                                ,Sex__c = 'Female'
     //                                ,Name = 'Willma'));
         
     //     insert patients;
@@ -107,28 +107,28 @@ public class DataCreator {
         List<Doctor__c> doctors = new List<Doctor__c>();
         
         doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1998, 02, 22)
-                   ,Gender__c = 'Male'
+                   ,Sex__c = 'Male'
                    ,Name = 'Doctor Acula'
                    ,HourOpen__c = Time.newInstance(8, 0, 0, 0)
                    ,HourClose__c = Time.newInstance(17, 0, 0, 0)
                    ,Location__c = '123 Doc Street Reston, VA 20190'));
         
         doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1970, 05, 17)
-                   ,Gender__c = 'Female'
+                   ,Sex__c = 'Female'
                    ,Name = 'Doctor Agon'
                    ,HourOpen__c = Time.newInstance(9, 0, 0, 0)
                    ,HourClose__c = Time.newInstance(16, 0, 0, 0)
                    ,Location__c = '999 Doctor Ave Billings, MT 59101'));
         
         doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1998, 02, 22)
-                   ,Gender__c = 'Male'
+                   ,Sex__c = 'Male'
                    ,Name = 'Medic Anne'
                    ,HourOpen__c = Time.newInstance(9, 30, 0, 0)
                    ,HourClose__c = Time.newInstance(18, 0, 0, 0)
                    ,Location__c = '123 Doc Street Reston, VA 20190'));
         
         doctors.add(new Doctor__c(Birthdate__c = Date.newInstance(1961, 11, 29)
-                   ,Gender__c = 'Female'
+                   ,Sex__c = 'Female'
                    ,Name = 'Doctor Amatic'
                    ,HourOpen__c = Time.newInstance(6, 0, 0, 0)
                    ,HourClose__c = Time.newInstance(11, 30, 0, 0)

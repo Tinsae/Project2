@@ -3,7 +3,6 @@
     <fullName>AllPatients</fullName>
     <columns>FULL_NAME</columns>
     <columns>Age__c</columns>
-    <columns>Gender__c</columns>
     <filterScope>Mine</filterScope>
     <label>All Patients</label>
 </ListView>

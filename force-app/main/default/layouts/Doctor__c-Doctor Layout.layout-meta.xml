@@ -21,7 +21,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Gender__c</field>
+                <field>Sex__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

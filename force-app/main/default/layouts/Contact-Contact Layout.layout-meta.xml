@@ -42,12 +42,12 @@
                 <field>LeadSource</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Gender__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Age__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Sex__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -150,6 +150,8 @@
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>false</editHeading>
+        <layoutColumns/>
+        <layoutColumns/>
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>

@@ -1,49 +1,25 @@
 <apex:page controller="HomePageController">
-    <script> 
-        function alertUser(message) {
-            alert(message);
-        }
-    </script>
-    <body onload="alertUser('Hi')"></body>
+        
     <!-- Header image -->
-    <apex:pageBlock>
-        <apex:image value="{!$Resource.pillHeaderSalesforce091619}" width="100%" height="300px" />
+    <apex:pageBlock >
+        <!-- <apex:image value="{!$Resource.pillHeaderSalesforce091619}" width="100%" height="300px" /> -->
+        <p style="font-size:40px; text-align:center; font-weight:900; margin-bottom:30px;">My Appointments</p>
     </apex:pageBlock>
 
     <!-- Need form to use buttons  -->
-    <apex:form>
-        <apex:pageBlock title="My Appointments">
+    <apex:form >
+        <apex:pageBlock >
+
+            <!-- Display an INFO message if the patient has/had an appointment today -->
+            <apex:pageMessages ></apex:pageMessages>
 
             <apex:pageBlockButtons location="top">
                 <!-- Need to implement action="goToAppointmentWizard" -->
                 <apex:commandButton value="Book an Appointment" />
             </apex:pageBlockButtons>
-        
-            <!-- Past and future appointments tables -->
-            <!-- <apex:pageBlockSection columns="2">      
-                <!-- side-by-side 
-                <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
-                    <apex:facet name="caption">Upcoming Appointments</apex:facet>
-                    <apex:column value="{!appointment.Date__c}" />
-                    <apex:column value="{!appointment.Location__c}" />
-                    <apex:column value="{!appointment.StartTime__c}" />
-                    <apex:column value="{!appointment.Doctor__c}" />
-                    <apex:column value="{!appointment.Patient__c}" />
-                    <apex:column value="{!appointment.Cancelled__c}" />
-                </apex:pageBlockTable>
-                <apex:pageBlockTable value="{!pastAppointments}" var="appointment">
-                    <apex:facet name="caption">Past Appointments</apex:facet>
-                    <apex:column value="{!appointment.Date__c}" />
-                    <apex:column value="{!appointment.Location__c}" />
-                    <apex:column value="{!appointment.StartTime__c}" />
-                    <apex:column value="{!appointment.Doctor__c}" />
-                    <apex:column value="{!appointment.Patient__c}" />
-                    <apex:column value="{!appointment.Cancelled__c}" />
-                </apex:pageBlockTable>
-            </apex:pageBlockSection> -->
 
             <!-- vertical -->
-         <apex:pageBlockSection title="Upcoming Appointments">
+            <apex:pageBlockSection title="Upcoming Appointments">
             <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
                 <apex:column value="{!appointment.Date__c}" />
                 <apex:column value="{!appointment.Location__c}" />
@@ -65,8 +41,8 @@
     </apex:form>
 
     <!-- Footer -->
-    <apex:pageBlock>
-        <apex:pageBlockSection>
+    <apex:pageBlock >
+        <apex:pageBlockSection >
             This is a Footer
         </apex:pageBlockSection>
     </apex:pageBlock>
