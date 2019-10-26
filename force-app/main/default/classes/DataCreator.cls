@@ -3,7 +3,6 @@ public class DataCreator {
 		deleteExistingData();
         
         createAccount();
-        //createPatients();
         createContacts();
         createDoctors();
         createConditions();
@@ -20,7 +19,7 @@ public class DataCreator {
         // Lookup(Condition)
         createSpecialties();
 
-        //createSymptoms();
+        createSymptoms();
     }
     
     private static void deleteExistingData() {
@@ -29,7 +28,6 @@ public class DataCreator {
         deleteExistingSpecialties();
         deleteExistingConditions();
         deleteExistingSymptoms();
-        //deleteExistingPatients();
         deleteExistingContacts();
         deleteExistingAccount();
         deleteExistingDoctors();
@@ -38,7 +36,6 @@ public class DataCreator {
     private static void deleteExistingSymptoms() { delete [SELECT Id FROM Symptom__c]; }
     private static void deleteExistingAccount() { delete [SELECT Id FROM Account]; }
     private static void deleteExistingContacts() { delete [SELECT Id FROM Contact]; }
-    //private static void deleteExistingPatients() { delete [SELECT Id FROM Patient__c]; }
     private static void deleteExistingAppointments() { delete [SELECT Id FROM Appointment__c]; }
     private static void deleteExistingDoctors() { delete [SELECT Id FROM Doctor__c]; }
     private static void deleteExistingSpecialties() { delete [SELECT Id FROM Specialty__c]; }
@@ -81,26 +78,6 @@ public class DataCreator {
 
         insert contacts;
     }
-    // private static void createPatients() {
-        
-    //     List<Patient__c> patients = new List<Patient__c>();
-        
-    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1945, 01, 01)
-    //                                ,Sex__c = 'Male'
-    //                                ,Name = 'Sylvestor'));
-    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1947, 12, 07)
-    //                                ,Sex__c = 'Female'
-    //                                ,Name = 'Adrienne'));
-    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(2016, 10, 31)
-    //                                ,Sex__c = 'Male'
-    //                                ,Name = 'Mortem'));
-    //     patients.add(new patient__c(DateOfBirth__c = Date.newInstance(1978, 12, 25)
-    //                                ,Sex__c = 'Female'
-    //                                ,Name = 'Willma'));
-        
-    //     insert patients;
-        
-    // }
     
     private static void createDoctors() {
         
@@ -209,5 +186,27 @@ public class DataCreator {
         insert specialties;
     }
 
-    // private static void createSymptoms() {}
+    private static void createSymptoms() {
+        List<Symptom__c> symptoms = new List<Symptom__c>();
+
+        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1277'
+                    ,Name = 'Decreased tongue motility'));
+
+        symptoms.add(new Symptom__C(InfermedicaId__c = 's_124'
+                    ,Name = 'Scotoma, eye floaters'));
+
+        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1561'
+                    ,Name = 'Xanthoma'));
+
+        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1183'
+                    ,Name = 'Winterbottom\'s sign'));
+
+        symptoms.add(new Symptom__C(InfermedicaId__c = 's_478'
+                    ,Name = 'Facial pain'));
+
+        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1283'
+                    ,Name = 'Cogwheel muscle rigidity'));
+
+        insert symptoms;
+    }
 }
