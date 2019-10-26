@@ -4,7 +4,7 @@
     This is your new Page
     <!-- End Default Content REMOVE THIS -->
     <apex:form>
-        <apex:pageBlock title="My Content">
+        <apex:pageBlock title="{!userContact.Name} - {!userContact.Age}/{!userContact.Sex}">
                 <apex:pageBlockButtons >
                     <apex:commandButton value="Process Symptoms"/>
                 </apex:pageBlockButtons>
