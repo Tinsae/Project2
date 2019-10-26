@@ -2,14 +2,20 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Age__c</fullName>
     <externalId>false</externalId>
-    <formula>(YEAR(TODAY()) * 365 - YEAR(DateOfBirth__c) * 365) / 365</formula>
+    <formula>IF(
+  AND(MONTH(TODAY()) &gt; MONTH(Birthdate), YEAR(TODAY()) &gt; YEAR(Birthdate))
+  ,YEAR(TODAY()) - YEAR(Birthdate)
+  ,IF(
+    AND(MONTH(TODAY()) = MONTH(Birthdate), DAY(TODAY()) &gt;= DAY(Birthdate), YEAR(TODAY()) &gt; YEAR(Birthdate))
+    ,YEAR(TODAY()) - YEAR(Birthdate)
+    ,YEAR(TODAY()) - YEAR(Birthdate) - 1
+  )
+)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Age</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
-    <trackHistory>false</trackHistory>
-    <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>
 </CustomField>
