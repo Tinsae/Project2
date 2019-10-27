@@ -38,7 +38,7 @@ public class symptomExtension {
                 presentingSymptoms.add(presenting);
             }
         }
-        update ctrl;
+        // update ctrl;
     }
 
     public List<Map<String, String>> getPresentingSymptoms() {
