@@ -19,7 +19,7 @@ public with sharing class AppointmentCalendarController {
     public static void createAppointment(Integer year, Integer month, Integer day, Integer startTime, String doctorId, String patientId){
         Appointment__c appointment = new Appointment__c();
         appointment.Doctor__c = doctorId;
-        appointment.Patient__c = patientId;
+        appointment.Contact__c = patientId;
         appointment.Date__c = Date.newInstance(year, month, day);
         appointment.StartTime__c = Time.newInstance(startTime, 0,0,0);
         try{
@@ -40,19 +40,23 @@ public with sharing class AppointmentCalendarController {
     }
 
     @RemoteAction
-    public static List<String> getAppointmentInfo(String doctorId){
-        List<Appointment__c> existingAppointments = [SELECT Doctor__r.Id, Patient__r.Name, Date__c, StartTime__c 
+    public static List<String> getAppointmentInfo(String doctorId, String patientId){
+        List<Appointment__c> existingAppointments = [SELECT Doctor__r.Id, Contact__r.Name, Date__c, StartTime__c 
                                                     FROM Appointment__c 
                                                     WHERE Doctor__r.Id =: doctorId
                                                     AND Date__c != NULL
                                                     AND StartTime__c != NULL];
         List<String> appointmentStrings = new List<String>();
         String dateFormat;
-        appointmentStrings.add(existingAppointments[0].Patient__r.Name);
+        String patientName;
         for(Appointment__c app: existingAppointments){
             dateFormat = app.Date__c.year() + ',' + app.Date__c.month() + ',' + app.Date__c.day() + ',' + app.StartTime__c.hour();
             appointmentStrings.add(dateFormat);
+            if(app.Contact__c==patientId){
+                patientName = app.Contact__r.Name;
+            }
         }
+        appointmentStrings.add(patientName);
         return appointmentStrings;
     }
 }

@@ -23,6 +23,7 @@
     </apex:form>
     <apex:stylesheet value="{! $Resource.AppointmentCalendarStyle}"/>
     <apex:includeScript value="{! $Resource.AppointmentCalendarJS}" loadOnReady="true"/>
+    
     <input id="getDoctorInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getDoctorInfo}"/>
     <input id="getAppointmentInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getAppointmentInfo}"/>
     <input id="createAppointment" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.createAppointment}"/> 
