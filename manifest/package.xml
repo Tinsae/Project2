@@ -4,6 +4,7 @@
         <members>DataCreator</members>
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
+        <members>AppointmentCalendarController</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -52,10 +53,13 @@
     </types>
     <types>
         <members>HomePage</members>
+        <members>AppointmentCalendar</members>
         <name>ApexPage</name>
     </types>
     <types>
         <members>pillHeaderSalesforce091619</members>
+        <members>AppointmentCalendarJS</members>
+        <members>AppointmentCalendarStyle</members>
         <name>StaticResource</name>
     </types>
     <version>46.0</version>
