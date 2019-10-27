@@ -1,8 +1,4 @@
 <apex:page controller="symptomExtension">
-    <!-- Begin Default Content REMOVE THIS -->
-    <h1>Congratulations</h1>
-    This is your new Page
-    <!-- End Default Content REMOVE THIS -->
     <apex:form>
         <apex:pageBlock title="My Content">
                 <apex:pageBlockButtons >
@@ -15,14 +11,15 @@
                     <apex:column value="{!s.OwnerId}"/>
                 </apex:pageBlockTable>
             </apex:pageBlock>
+
             <apex:outputpanel id="counter">
-                <apex:outputText value="Click Me!: {!gg}"/>
-                <apex:actionSupport event="onclick" 
-                                    action="{!submit}" 
-                                    rerender="counter" status="counterStatus"/>
-            </apex:outputpanel>
-            <apex:actionStatus id="counterStatus" 
-            startText=" (incrementing...)" 
-            stopText=" (done)"/>
+                    <apex:outputText value="Click Me!: {!count} {!presentingSymptoms}"/>
+                    <apex:actionSupport event="onclick" 
+                                        action="{!incrementCounter}" 
+                                        rerender="counter" status="counterStatus"/>
+                </apex:outputpanel>
+                <apex:actionStatus id="counterStatus" 
+                                   startText=" (incrementing...)" 
+                                   stopText=" (done)"/>
     </apex:form>
 </apex:page>

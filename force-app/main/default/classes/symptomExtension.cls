@@ -1,7 +1,7 @@
-public with sharing class symptomExtension {    
+public class symptomExtension {    
     public List<Symptom__c> ctrl {get;set;}
     public Contact userContact {get;set;}
-    public List<Map<String, String>> presentingSymptoms = new List<Map<String, String>>();
+    public List<Map<String, String>> presentingSymptoms;
 
     public symptomExtension() {
         ctrl = [SELECT Present__c, Name, InfermedicaId__c, OwnerId FROM Symptom__c];
@@ -15,24 +15,21 @@ public with sharing class symptomExtension {
                 WHERE Id = :userId
             )
         ];
-        // submit();
     }
 
-    public Object gg {
-        get{
-            for (Symptom__c s : ctrl) {
-                if (s.Present__c == true) {
-                    Map<String, String> presenting = new Map<String, String>();
-                    presenting.put('id', s.InfermedicaId__c);
-                    presenting.put('choice_id', 'present');
-                    presentingSymptoms.add(presenting);
-                }
-            }
-            return presentingSymptoms;
-        }
-        set;
+    Integer count = 0;
+                        
+    public PageReference incrementCounter() {
+            count++;
+            return null;
     }
+                    
+    public Integer getCount() {
+        return count;
+    }
+
     public void submit() {
+        presentingSymptoms = new List<Map<String, String>>();
         for (Symptom__c s : ctrl) {
             if (s.Present__c == true) {
                 Map<String, String> presenting = new Map<String, String>();
@@ -41,10 +38,19 @@ public with sharing class symptomExtension {
                 presentingSymptoms.add(presenting);
             }
         }
+        update ctrl;
+    }
+
+    public List<Map<String, String>> getPresentingSymptoms() {
+        return presentingSymptoms;
     }
 
     public String getAPIKeys() {
         return '';
+    }
+
+    public String getPostSymptoms() {
+        return postSymptoms();
     }
 
     public String postSymptoms() {
