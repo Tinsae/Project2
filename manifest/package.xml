@@ -45,6 +45,7 @@
     </types>
     <types>
         <members>Admin</members>
+        <members>Patient User</members>
         <name>Profile</name>
     </types>
     <types>
@@ -54,6 +55,7 @@
     </types>
     <types>
         <members>pillHeaderSalesforce091619</members>
+        <members>API</members>
         <name>StaticResource</name>
     </types>
     <version>46.0</version>

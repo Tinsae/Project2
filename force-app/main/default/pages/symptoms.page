@@ -1,11 +1,11 @@
 <apex:page controller="symptomExtension">
-    <apex:form>
+    <apex:form >
         <apex:pageBlock title="My Content">
                 <apex:pageBlockButtons >
                     <apex:commandButton value="Process Symptoms" action="{!submit}"/>
                 </apex:pageBlockButtons>
                 <apex:pageBlockTable value="{!ctrl}" var="s">
-                    <apex:column> <apex:inputCheckbox value="{!s.Present__c}"/> </apex:column>
+                    <apex:column > <apex:inputCheckbox value="{!s.Present__c}"/> </apex:column>
                     <apex:column value="{!s.Name}"/>
                     <apex:column value="{!s.InfermedicaId__c}"/>
                     <apex:column value="{!s.OwnerId}"/>
