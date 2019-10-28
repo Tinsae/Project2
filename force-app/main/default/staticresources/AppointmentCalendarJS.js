@@ -286,3 +286,4 @@ function getTimeString(timeOfDay){
     var timeArray = [start, end];
     return timeArray;
 }
+       

@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>APIInput</members>
         <members>DataCreator</members>
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
         <members>AppointmentCalendarController</members>
+        <members>symptomExtension</members>
         <name>ApexClass</name>
     </types>
     <types>
+        <members>Account</members>
         <members>Appointment__c</members>
         <members>Condition__c</members>
+        <members>Contact</members>
         <members>Doctor__c</members>
-        <!--<members>Patient__c</members>-->
+        <members>PossibleCondition__c</members>
         <members>Specialty__c</members>
         <members>Symptom__c</members>
-        <members>PossibleCondition__c</members>
-        <members>Account</members>
-        <members>Contact</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>Appointment__c</members>
         <members>Condition__c</members>
         <members>Doctor__c</members>
-        <!--<members>Patient__c</members>-->
+        <members>PossibleCondition__c</members>
         <members>Specialty__c</members>
         <members>Symptom__c</members>
-        <members>PossibleCondition__c</members>
-        <!--<members>Account</members>
-        <members>Contact</members>-->
+        <members>Home</members>
+        <members>Symptom_Checker</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -36,30 +36,32 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Account-Account Layout</members>
         <members>Appointment__c-Appointment Layout</members>
         <members>Condition__c-Condition Layout</members>
+        <members>Contact-Contact Layout</members>
         <members>Doctor__c-Doctor Layout</members>
-        <!--<members>Patient__c-Patient Layout</members>-->
         <members>PossibleCondition__c-Possible Condition Layout</members>
         <members>Specialty__c-Specialty Layout</members>
         <members>Symptom__c-Symptom Layout</members>
-        <members>Account-Account Layout</members>
-        <members>Contact-Contact Layout</members>
         <name>Layout</name>
     </types>
     <types>
         <members>Admin</members>
+        <members>Patient User</members>
         <name>Profile</name>
     </types>
     <types>
         <members>HomePage</members>
         <members>AppointmentCalendar</members>
+        <members>symptoms</members>
         <name>ApexPage</name>
     </types>
     <types>
         <members>pillHeaderSalesforce091619</members>
         <members>AppointmentCalendarJS</members>
         <members>AppointmentCalendarStyle</members>
+        <members>API</members>
         <name>StaticResource</name>
     </types>
     <version>46.0</version>

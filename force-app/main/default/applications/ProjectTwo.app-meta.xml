@@ -17,5 +17,7 @@
     <tabs>Symptom__c</tabs>
     <tabs>Specialty__c</tabs>
     <tabs>standard-Account</tabs>
+    <tabs>Symptom_Checker</tabs>
+    <tabs>Home</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

@@ -28,8 +28,8 @@ public class DataCreator {
         deleteExistingSpecialties();
         deleteExistingConditions();
         deleteExistingSymptoms();
-        deleteExistingContacts();
-        deleteExistingAccount();
+        // deleteExistingContacts();
+        // deleteExistingAccount();
         deleteExistingDoctors();
     }
     
@@ -133,7 +133,23 @@ public class DataCreator {
         conditions.add(new Condition__c(InfermedicaId__c = 'c_127'
                                        ,Description__c = ''
                                        ,Name = 'Pneumonia'));
-        
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_87'
+                                       ,Description__c = ''
+                                       ,Name = 'Common cold'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_440'
+                                       ,Description__c = ''
+                                       ,Name = 'Nasal polyps'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_133'
+                                       ,Description__c = ''
+                                       ,Name = 'Acute rhinosinusitis'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_390'
+                                       ,Description__c = ''
+                                       ,Name = 'Pseudobulbar palsy'));
+
         insert conditions;
     }
     
