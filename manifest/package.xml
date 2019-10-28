@@ -58,10 +58,6 @@
         <name>ApexPage</name>
     </types>
     <types>
-        <members>Security</members>
-        <name>Settings</name>
-    </types>
-    <types>
         <members>pillHeaderSalesforce091619</members>
         <members>AppointmentCalendarJS</members>
         <members>AppointmentCalendarStyle</members>
