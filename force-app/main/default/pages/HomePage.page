@@ -1,4 +1,5 @@
 <apex:page controller="HomePageController">
+        
     <!-- Header image -->
     <apex:pageBlock >
         <!-- <apex:image value="{!$Resource.pillHeaderSalesforce091619}" width="100%" height="300px" /> -->
@@ -13,52 +14,36 @@
             <apex:pageMessages ></apex:pageMessages>
 
             <apex:pageBlockButtons location="top">
-                <apex:commandButton value="Book an Appointment" action="{!goToAppointmentWizard}" />
-                <apex:param name="idParam" value="{!idParam}" />
+                <!-- Need to implement action="goToAppointmentWizard" -->
+                <apex:commandButton value="Book an Appointment" />
             </apex:pageBlockButtons>
 
-            <!-- Past and future appointments tables -->
-            <apex:pageBlockSection columns="2">      
-               
-                <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
-                    <apex:facet name="caption">
-                        <apex:outputText value="Upcoming Appointments" style="font-size:25px;" />
-                    </apex:facet>
-                    <apex:column value="{!appointment.Date__c}" />
-                    <apex:column value="{!appointment.Location__c}" />
-                    <apex:column value="{!appointment.StartTime__c}" />
-                    <apex:column headerValue="Doctor">
-                        <apex:outputText value="{!appointment.Doctor__r.Name}" />
-                    </apex:column>
-                    <!-- <apex:column headerValue="Patient">
-                            <apex:outputText value="{!appointment.Contact__r.FirstName} {!appointment.Contact__r.LastName}" />
-                    </apex:column> -->
-                    <apex:column value="{!appointment.Cancelled__c}" />
-                </apex:pageBlockTable>
-
+            <!-- vertical -->
+            <apex:pageBlockSection title="Upcoming Appointments">
+            <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
+                <apex:column value="{!appointment.Date__c}" />
+                <apex:column value="{!appointment.Location__c}" />
+                <apex:column value="{!appointment.StartTime__c}" />
+                <apex:column value="{!appointment.Doctor__c}" />
+                <apex:column value="{!appointment.Contact__c}" />
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Past Appointments">
                 <apex:pageBlockTable value="{!pastAppointments}" var="appointment">
-                    <apex:facet name="caption">
-                        <apex:outputText value="Past Appointments" style="font-size:25px;" />
-                    </apex:facet>
                     <apex:column value="{!appointment.Date__c}" />
                     <apex:column value="{!appointment.Location__c}" />
                     <apex:column value="{!appointment.StartTime__c}" />
-                    <apex:column headerValue="Doctor">
-                        <apex:outputText value="{!appointment.Doctor__r.Name}" />
-                    </apex:column>
-                    <!-- <apex:column headerValue="Patient">
-                        <apex:outputText value="{!appointment.Contact__r.FirstName} {!appointment.Contact__r.LastName}" />
-                    </apex:column> -->
-                    <apex:column value="{!appointment.Cancelled__c}" />
+                    <apex:column value="{!appointment.Doctor__c}" />
+                    <apex:column value="{!appointment.Contact__c}" />
                 </apex:pageBlockTable>
             </apex:pageBlockSection> 
         </apex:pageBlock>
     </apex:form>
 
     <!-- Footer -->
-    <!-- <apex:pageBlock >
+    <apex:pageBlock >
         <apex:pageBlockSection >
             This is a Footer
         </apex:pageBlockSection>
-    </apex:pageBlock> -->
+    </apex:pageBlock>
 </apex:page>
