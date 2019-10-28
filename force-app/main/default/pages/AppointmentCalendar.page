@@ -5,7 +5,7 @@
     <div id="calendar">
     </div>
 
-    <apex:form>
+    <apex:form >
         <div id="popupDiv" class="popup" style="display: none">
             <div class="popup-background">
                 <p>Appointment Confirmation</p>
@@ -30,4 +30,3 @@
     <input id="doctor" type="hidden" value="{!doctor}"/>
     <input id="patient" type="hidden" value="{!patient}"/>
 </apex:page>
-

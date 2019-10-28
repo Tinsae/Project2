@@ -1,8 +1,8 @@
 public with sharing class AppointmentCalendarController {
 
-    public static String doctor{get;set;}
+    public String doctor{get;set;}
 
-    public static String patient{get;set;}
+    public String patient{get;set;}
 
 
     public AppointmentCalendarController(){
@@ -11,7 +11,7 @@ public with sharing class AppointmentCalendarController {
     }
 
     public PageReference redirectToHome(){
-        PageReference pageRef = new PageReference('/apex/HomePage');
+        PageReference pageRef = new PageReference('/apex/HomePage?id='+patient);
         return pageRef;
     }
 
@@ -30,12 +30,13 @@ public with sharing class AppointmentCalendarController {
 
     @RemoteAction
     public static List<Object> getDoctorInfo(String doctorId){
-        Doctor__c doc = [SELECT Id, Name, Location__c, HourClose__c, HourOpen__c FROM Doctor__c WHERE Id =: doctorId];
+        Doctor__c doc = [SELECT Id, Name, Location__c, HourClose__c, HourOpen__c, DaysOpen__c FROM Doctor__c WHERE Id =: doctorId];
         List<Object> doctorInfo = new List<Object>();
         doctorInfo.add(doc.HourOpen__c);
         doctorInfo.add(doc.HourClose__c);
         doctorInfo.add(doc.Name);
         doctorInfo.add(doc.Location__c);
+        doctorInfo.add(doc.DaysOpen__c);
         return doctorInfo;
     }
 
