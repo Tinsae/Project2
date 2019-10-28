@@ -2,9 +2,11 @@ public with sharing class HomePageController {
 
     private List<Appointment__c> pastAppointments;
     private List<Appointment__c> futureAppointments;
+    private List<Appointment__c> patient;
+    public String idParam {get;set;}
 
-    // Get the current time in order to display past/future appointments
-    // that were scheduled for today
+    // Get the current time and date in order to display 
+    // past/future appointments scheduled for today
     private Datetime now = Datetime.now();
 
     private Integer years = now.year();
@@ -19,6 +21,14 @@ public with sharing class HomePageController {
 
     public HomePageController() {
 
+        patient = [
+            SELECT 
+                Contact__c 
+            FROM Appointment__c 
+            WHERE Contact__c =: ApexPages.currentPage().getParameters().get('Id') 
+            LIMIT 1
+        ];
+
         pastAppointments = [
             SELECT 
                 Id 
@@ -26,7 +36,10 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
+                ,Doctor__r.Name
                 ,Contact__c
+                ,Contact__r.FirstName
+                ,Contact__r.LastName
                 ,Cancelled__c
             FROM Appointment__c 
             WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id'))
@@ -41,7 +54,10 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
+                ,Doctor__r.Name
                 ,Contact__c
+                ,Contact__r.FirstName
+                ,Contact__r.LastName
                 ,Cancelled__c
             FROM Appointment__c 
             WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id'))
@@ -57,8 +73,7 @@ public with sharing class HomePageController {
                     ApexPages.Severity.INFO, 'You had an appointment today.')); 
                 break;
             }
-        }    
-         
+        }       
         return pastAppointments;
     }
 
@@ -71,5 +86,14 @@ public with sharing class HomePageController {
             }
         }    
         return futureAppointments;
+    }
+
+    public PageReference goToAppointmentWizard() {
+
+        idParam = (String)patient[0].Contact__c;
+        String url = '/apex/dummyAppointmentWizardPage?id=' + idParam;
+        Pagereference pageRef = new Pagereference(url);
+
+        return pageRef;
     }
 }
