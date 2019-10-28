@@ -5,7 +5,7 @@
     <div id="calendar">
     </div>
 
-    <apex:form>
+    <apex:form >
         <div id="popupDiv" class="popup" style="display: none">
             <div class="popup-background">
                 <p>Appointment Confirmation</p>
@@ -23,10 +23,10 @@
     </apex:form>
     <apex:stylesheet value="{! $Resource.AppointmentCalendarStyle}"/>
     <apex:includeScript value="{! $Resource.AppointmentCalendarJS}" loadOnReady="true"/>
+    
     <input id="getDoctorInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getDoctorInfo}"/>
     <input id="getAppointmentInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getAppointmentInfo}"/>
     <input id="createAppointment" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.createAppointment}"/> 
     <input id="doctor" type="hidden" value="{!doctor}"/>
     <input id="patient" type="hidden" value="{!patient}"/>
 </apex:page>
-
