@@ -28,8 +28,8 @@ public class DataCreator {
         deleteExistingSpecialties();
         deleteExistingConditions();
         deleteExistingSymptoms();
-        deleteExistingContacts();
-        deleteExistingAccount();
+        // deleteExistingContacts();
+        // deleteExistingAccount();
         deleteExistingDoctors();
     }
     
@@ -149,7 +149,7 @@ public class DataCreator {
         conditions.add(new Condition__c(InfermedicaId__c = 'c_390'
                                        ,Description__c = ''
                                        ,Name = 'Pseudobulbar palsy'));
-                                       
+
         insert conditions;
     }
     
