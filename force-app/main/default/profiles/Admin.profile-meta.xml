@@ -224,12 +224,7 @@
         <editable>true</editable>
         <field>Appointment__c.Location__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Appointment__c.Patient__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions>]
     <fieldPermissions>
         <editable>true</editable>
         <field>Appointment__c.StartTime__c</field>
