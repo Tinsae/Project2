@@ -27,6 +27,8 @@
         <members>PossibleCondition__c</members>
         <members>Specialty__c</members>
         <members>Symptom__c</members>
+        <members>Home</members>
+        <members>Symptom_Checker</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -54,6 +56,10 @@
         <members>AppointmentCalendar</members>
         <members>symptoms</members>
         <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Security</members>
+        <name>Settings</name>
     </types>
     <types>
         <members>pillHeaderSalesforce091619</members>
