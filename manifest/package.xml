@@ -10,15 +10,18 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>Account</members>
         <members>Appointment__c</members>
         <members>Condition__c</members>
-        <members>Contact</members>
         <members>Doctor__c</members>
         <members>PossibleCondition__c</members>
         <members>Specialty__c</members>
         <members>Symptom__c</members>
         <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Contact.Age__C</members>
+        <members>Contact.Sex__c</members>
+        <name>CustomField</name>
     </types>
     <types>
         <members>Appointment__c</members>
