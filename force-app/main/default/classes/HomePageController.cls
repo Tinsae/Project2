@@ -2,9 +2,18 @@ public with sharing class HomePageController {
 
     private List<Appointment__c> pastAppointments;
     private List<Appointment__c> futureAppointments;
+    private Appointment__c patient;
 
-    // Get the current time in order to display past/future appointments
-    // that were scheduled for today
+    // Parameter to pass to appointment wizard URL
+    public String idParam {get;set;}
+
+    // User info
+    private String userId;
+    private Contact userContact;
+
+    // Get the current time and date in order to display 
+    // past/future appointments scheduled for today, along with 
+    // info messages
     private Datetime now = Datetime.now();
 
     private Integer years = now.year();
@@ -19,6 +28,32 @@ public with sharing class HomePageController {
 
     public HomePageController() {
 
+        userId = UserInfo.getUserId();
+        userContact = [
+            SELECT 
+                Id
+                ,Name
+                ,Age__c
+                ,Sex__c
+            FROM Contact
+            WHERE Id IN (
+                SELECT ContactId
+                FROM User
+                WHERE Id = :userId
+            )
+            LIMIT 1
+        ];
+
+        patient = [
+            SELECT 
+                Contact__c 
+                ,Contact__r.FirstName
+                ,Contact__r.LastName
+            FROM Appointment__c 
+            WHERE Contact__c =: userContact.Id 
+            LIMIT 1
+        ];
+
         pastAppointments = [
             SELECT 
                 Id 
@@ -26,10 +61,13 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
+                ,Doctor__r.Name
                 ,Contact__c
+                ,Contact__r.FirstName
+                ,Contact__r.LastName
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id'))
+            WHERE (Contact__c =: userContact.Id) 
                 AND ((Date__c < TODAY) 
                 OR (Date__c = TODAY AND StartTime__c <: currentTime))
         ];
@@ -41,10 +79,13 @@ public with sharing class HomePageController {
                 ,StartTime__c 
                 ,Location__c 
                 ,Doctor__c 
+                ,Doctor__r.Name
                 ,Contact__c
+                ,Contact__r.FirstName
+                ,Contact__r.LastName
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Contact__c =: ApexPages.currentPage().getParameters().get('Id'))
+            WHERE (Contact__c =: userContact.Id) 
                 AND ((Date__c > TODAY)
                 OR (Date__c = TODAY AND StartTime__c >: currentTime))
         ];
@@ -57,8 +98,7 @@ public with sharing class HomePageController {
                     ApexPages.Severity.INFO, 'You had an appointment today.')); 
                 break;
             }
-        }    
-         
+        }       
         return pastAppointments;
     }
 
@@ -71,5 +111,13 @@ public with sharing class HomePageController {
             }
         }    
         return futureAppointments;
+    }
+
+    public PageReference goToAppointmentWizard() {
+        idParam = (String)patient.Contact__c;
+        String url = '/apex/symptoms?id=' + idParam;
+        Pagereference pageRef = new Pagereference(url);
+
+        return pageRef;
     }
 }
