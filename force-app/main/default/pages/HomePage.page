@@ -1,0 +1,63 @@
+<apex:page controller="HomePageController">
+
+    <apex:pageBlock >
+        <apex:image value="{!$Resource.pillsHeader}" width="100%" height="300px" />
+    </apex:pageBlock>
+
+    <apex:form >
+        <apex:pageBlock title="My Appointments">
+
+            <apex:pageMessages ></apex:pageMessages>
+
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Book an Appointment" action="{!goToAppointmentWizard}" />
+                <!-- <apex:param name="id" value="{!idParam}" /> -->
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection columns="2">      
+               
+                <apex:pageBlockTable value="{!futureAppointments}" var="appointment">
+                    <apex:facet name="caption">
+                        <apex:outputText value="Upcoming Appointments" style="font-size:25px;" />
+                    </apex:facet>
+                    <apex:column headerValue="Date">
+                        <apex:outputField value="{!appointment.Date__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Location" >
+                        <apex:outputText value="{!appointment.Location__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Start Time">
+                        <apex:outputField value="{!appointment.StartTime__c}" />    
+                    </apex:column>
+                    <apex:column headerValue="Doctor">
+                        <apex:outputText value="{!appointment.Doctor__r.Name}" />
+                    </apex:column>
+                    <apex:column headerValue="Cancelled">
+                        <apex:outputField value="{!appointment.Cancelled__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+
+                <apex:pageBlockTable value="{!pastAppointments}" var="appointment">
+                    <apex:facet name="caption">
+                        <apex:outputText value="Past Appointments" style="font-size:25px;" />
+                    </apex:facet>
+                    <apex:column headerValue="Date">
+                        <apex:outputField value="{!appointment.Date__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Location">
+                        <apex:outputText value="{!appointment.Location__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Start Time">
+                        <apex:outputField value="{!appointment.StartTime__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Doctor">
+                        <apex:outputText value="{!appointment.Doctor__r.Name}" />
+                    </apex:column>
+                    <apex:column headerValue="Cancelled">
+                        <apex:outputField value="{!appointment.Cancelled__c}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection> 
+        </apex:pageBlock>
+    </apex:form> 
+</apex:page>
