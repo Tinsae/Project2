@@ -34,8 +34,22 @@ public class DataCreator {
     }
     
     private static void deleteExistingSymptoms() { delete [SELECT Id FROM Symptom__c]; }
-    private static void deleteExistingAccount() { delete [SELECT Id FROM Account]; }
-    private static void deleteExistingContacts() { delete [SELECT Id FROM Contact]; }
+    private static void deleteExistingAccount() { delete [SELECT Id FROM Account WHERE Name = 'Patient Account']; }
+
+    private static void deleteExistingContacts() { 
+        delete [
+            SELECT 
+                AccountId 
+            FROM Contact
+            WHERE AccountId IN (
+                SELECT 
+                    Id 
+                FROM Account 
+                WHERE Name = 'Patient Account'
+            )
+        ]; 
+    }
+    
     private static void deleteExistingAppointments() { delete [SELECT Id FROM Appointment__c]; }
     private static void deleteExistingDoctors() { delete [SELECT Id FROM Doctor__c]; }
     private static void deleteExistingSpecialties() { delete [SELECT Id FROM Specialty__c]; }
@@ -50,7 +64,7 @@ public class DataCreator {
     private static void createContacts() {
 
         List<Contact> contacts = new List<Contact>();
-        Account account = [SELECT Id FROM Account LIMIT 1];
+        Account account = [SELECT Id FROM Account WHERE Name = 'Patient Account' LIMIT 1];
 
         contacts.add(new Contact(Birthdate = Date.newInstance(1945, 01, 01)
                                 ,FirstName = 'Sylvestor'
@@ -133,6 +147,22 @@ public class DataCreator {
         conditions.add(new Condition__c(InfermedicaId__c = 'c_127'
                                        ,Description__c = ''
                                        ,Name = 'Pneumonia'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_87'
+                                       ,Description__c = ''
+                                       ,Name = 'Common cold'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_440'
+                                       ,Description__c = ''
+                                       ,Name = 'Nasal polyps'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_133'
+                                       ,Description__c = ''
+                                       ,Name = 'Acute rhinosinusitis'));
+
+        conditions.add(new Condition__c(InfermedicaId__c = 'c_390'
+                                       ,Description__c = ''
+                                       ,Name = 'Pseudobulbar palsy'));
         
         insert conditions;
     }

@@ -5,6 +5,7 @@
         <members>DataCreator</members>
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
+        <members>AppointmentCalendarController</members>
         <members>symptomExtension</members>
         <name>ApexClass</name>
     </types>
@@ -26,6 +27,8 @@
         <members>PossibleCondition__c</members>
         <members>Specialty__c</members>
         <members>Symptom__c</members>
+        <members>Home</members>
+        <members>Symptom_Checker</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -50,11 +53,14 @@
     </types>
     <types>
         <members>HomePage</members>
+        <members>AppointmentCalendar</members>
         <members>symptoms</members>
         <name>ApexPage</name>
     </types>
     <types>
         <members>pillHeaderSalesforce091619</members>
+        <members>AppointmentCalendarJS</members>
+        <members>AppointmentCalendarStyle</members>
         <members>API</members>
         <name>StaticResource</name>
     </types>

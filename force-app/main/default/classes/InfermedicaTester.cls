@@ -4,9 +4,9 @@ public class InfermedicaTester {
         input.sex = 'male';
         input.age = '30';
         List<Map<String, String>> Evidence = new List<Map<String, String>>();
-        Evidence.add(new Map<String, String>{'id'=> 's_1193', 'choice_id'=> 'present'});
-        Evidence.add(new Map<String, String>{'id'=> 's_488', 'choice_id'=> 'present'});
-        Evidence.add(new Map<String, String>{'id'=> 's_418', 'choice_id'=> 'present'});
+        Evidence.add(new Map<String, String>{'id'=> 's_1277', 'choice_id'=> 'present'});
+        Evidence.add(new Map<String, String>{'id'=> 's_478', 'choice_id'=> 'present'});
+        Evidence.add(new Map<String, String>{'id'=> 's_1183', 'choice_id'=> 'present'});
         input.Evidence = Evidence;
         List<Object> conditions = sendRequest(input);
          for (Object condition: conditions) {

@@ -1,0 +1,32 @@
+<apex:page controller="AppointmentCalendarController">
+    <div id="navButtons">  
+        <p id="monthYear"></p>
+    </div>
+    <div id="calendar">
+    </div>
+
+    <apex:form >
+        <div id="popupDiv" class="popup" style="display: none">
+            <div class="popup-background">
+                <p>Appointment Confirmation</p>
+                <div class="popup-content">
+                    <p id="Doctor"></p>
+                    <p id="Address"></p>
+                    <p id="Patient"></p>
+                    <p id="Time"></p>
+                </div>
+                <div>
+                <apex:commandButton onclick="createAppointment()" action="{!redirectToHome}" value="confirm" id="confirmButton"/>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+    <apex:stylesheet value="{! $Resource.AppointmentCalendarStyle}"/>
+    <apex:includeScript value="{! $Resource.AppointmentCalendarJS}" loadOnReady="true"/>
+    
+    <input id="getDoctorInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getDoctorInfo}"/>
+    <input id="getAppointmentInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getAppointmentInfo}"/>
+    <input id="createAppointment" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.createAppointment}"/> 
+    <input id="doctor" type="hidden" value="{!doctor}"/>
+    <input id="patient" type="hidden" value="{!patient}"/>
+</apex:page>

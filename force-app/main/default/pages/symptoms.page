@@ -1,6 +1,6 @@
 <apex:page controller="symptomExtension">
     <apex:form >
-        <apex:pageBlock title="My Content">
+        <apex:pageBlock title="{!userContact.Name} / {!userContact.Age__c} / {!userContact.Sex__c}">
                 <apex:pageBlockButtons >
                     <apex:commandButton value="Process Symptoms" action="{!submit}"/>
                 </apex:pageBlockButtons>
@@ -10,16 +10,12 @@
                     <apex:column value="{!s.InfermedicaId__c}"/>
                     <apex:column value="{!s.OwnerId}"/>
                 </apex:pageBlockTable>
-            </apex:pageBlock>
+        </apex:pageBlock>
 
-            <apex:outputpanel id="counter">
-                    <apex:outputText value="Click Me!: {!count} {!presentingSymptoms}"/>
-                    <apex:actionSupport event="onclick" 
-                                        action="{!incrementCounter}" 
-                                        rerender="counter" status="counterStatus"/>
-                </apex:outputpanel>
-                <apex:actionStatus id="counterStatus" 
-                                   startText=" (incrementing...)" 
-                                   stopText=" (done)"/>
+        <apex:outputpanel id="counter">
+                <apex:outputText value="Click Me!: {!count} {!presentingSymptoms}"/>
+                <apex:actionSupport event="onclick" action="{!incrementCounter}" rerender="counter" status="counterStatus"/>
+        </apex:outputpanel>
+        <apex:actionStatus id="counterStatus" startText=" (incrementing...)" stopText=" (done)"/>
     </apex:form>
 </apex:page>
