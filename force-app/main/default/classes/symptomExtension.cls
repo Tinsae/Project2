@@ -6,15 +6,21 @@ public class symptomExtension {
     public symptomExtension() {
         ctrl = [SELECT Present__c, Name, InfermedicaId__c, OwnerId FROM Symptom__c];
         String userId = UserInfo.getUserId();
-        userContact = [
-            SELECT Id, Name, Age__c, Sex__c
-            FROM Contact
-            WHERE Id IN (
-                SELECT ContactId
-                FROM User
-                WHERE Id = :userId
-            )
-        ];
+        if (userId.length() > 0) {
+            userContact = [
+                SELECT Id, Name, Age__c, Sex__c
+                FROM Contact
+                WHERE Id IN (
+                    SELECT ContactId
+                    FROM User
+                    WHERE Id = :userId
+                )
+            ];
+        } else {
+            userContact.LastName = 'Unknown';
+            userContact.Birthdate = Date.parse('7/22/1995');
+            userContact.Sex__c = 'male';
+        }
     }
 
     Integer count = 0;
