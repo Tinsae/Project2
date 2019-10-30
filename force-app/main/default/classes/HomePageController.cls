@@ -2,14 +2,13 @@ public with sharing class HomePageController {
 
     private List<Appointment__c> pastAppointments;
     private List<Appointment__c> futureAppointments;
-    private Appointment__c patient;
 
     // Parameter to pass to appointment wizard URL
     public String idParam {get;set;}
 
     // User info
     private String userId;
-    private Contact userContact;
+    private List<Contact> userContact;
 
     // Get the current time and date in order to display 
     // past/future appointments scheduled for today, along with 
@@ -44,16 +43,6 @@ public with sharing class HomePageController {
             LIMIT 1
         ];
 
-        patient = [
-            SELECT 
-                Contact__c 
-                ,Contact__r.FirstName
-                ,Contact__r.LastName
-            FROM Appointment__c 
-            WHERE Contact__c =: userContact.Id 
-            LIMIT 1
-        ];
-
         pastAppointments = [
             SELECT 
                 Id 
@@ -67,7 +56,7 @@ public with sharing class HomePageController {
                 ,Contact__r.LastName
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Contact__c =: userContact.Id) 
+            WHERE (Contact__c =: userContact[0].Id) 
                 AND ((Date__c < TODAY) 
                 OR (Date__c = TODAY AND StartTime__c <: currentTime))
         ];
@@ -85,7 +74,7 @@ public with sharing class HomePageController {
                 ,Contact__r.LastName
                 ,Cancelled__c
             FROM Appointment__c 
-            WHERE (Contact__c =: userContact.Id) 
+            WHERE (Contact__c =: userContact[0].Id) 
                 AND ((Date__c > TODAY)
                 OR (Date__c = TODAY AND StartTime__c >: currentTime))
         ];
@@ -114,7 +103,8 @@ public with sharing class HomePageController {
     }
 
     public PageReference goToAppointmentWizard() {
-        idParam = (String)patient.Contact__c;
+
+        idParam = (String)userContact[0].Id;
         String url = '/apex/symptoms?id=' + idParam;
         Pagereference pageRef = new Pagereference(url);
 
