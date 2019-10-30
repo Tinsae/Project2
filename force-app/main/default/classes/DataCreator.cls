@@ -1,6 +1,6 @@
 public class DataCreator {
     public static void createData() {
-		deleteExistingData();
+	deleteExistingData();
         
         createAccount();
         createContacts();
@@ -34,8 +34,21 @@ public class DataCreator {
     }
     
     private static void deleteExistingSymptoms() { delete [SELECT Id FROM Symptom__c]; }
-    private static void deleteExistingAccount() { delete [SELECT Id FROM Account]; }
-    private static void deleteExistingContacts() { delete [SELECT Id FROM Contact]; }
+        private static void deleteExistingAccount() { delete [SELECT Id FROM Account WHERE Name = 'Patient Account']; }
+
+    private static void deleteExistingContacts() { 
+        delete [
+            SELECT 
+                AccountId 
+            FROM Contact
+            WHERE AccountId IN (
+                SELECT 
+                    Id 
+                FROM Account 
+                WHERE Name = 'Patient Account'
+            )
+        ]; 
+    }
     private static void deleteExistingAppointments() { delete [SELECT Id FROM Appointment__c]; }
     private static void deleteExistingDoctors() { delete [SELECT Id FROM Doctor__c]; }
     private static void deleteExistingSpecialties() { delete [SELECT Id FROM Specialty__c]; }
