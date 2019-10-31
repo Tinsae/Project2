@@ -1,7 +1,8 @@
 <apex:page controller="AppointmentCalendarController">
-    <div id="navButtons">  
-        <p id="calendarHeader"></p>
+    <div id="calendarHeader">  
     </div>
+    <button onClick="previous()" id="previous">&lt;</button>
+    <button onClick="next()" id="next">&gt;</button>
     <div id="calendar">
     </div>
 
@@ -26,7 +27,7 @@
                     </apex:pageBlockSectionItem>  
                 </apex:pageBlockSection>
                 <div>
-                    <apex:commandButton onclick="cancel()" value="cancel" id="cancelButton"/>
+                    <button class="cancel" onclick="cancel()" id="cancelButton" type="button">cancel</button>
                     <apex:commandButton onclick="createAppointment()" action="{!redirectToHome}" value="confirm" id="confirmButton"/>
                 </div>
             </apex:pageBlock>

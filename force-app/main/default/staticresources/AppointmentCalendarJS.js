@@ -39,6 +39,7 @@ function buttonDisable(buttons, disabled){
 
 function cancel(){
     document.getElementById("popupDiv").style.display = "none";
+    return false;
 }
 
 
@@ -48,9 +49,7 @@ function cancel(){
 */
 function createCalendar(){
     // display the current month and year at the top of the calendar
-    calendarHeader.innerHTML = '<button onClick="previous()" id="previous">&lt</button>'
-                                + `<h1>${monthInfo[dateInfo.currentMonth][0]} ${dateInfo.currentYear}</h1>`+
-                                '<button onClick="next()" id="next">&gt</button>';
+    calendarHeader.innerHTML = `<h1>${monthInfo[dateInfo.currentMonth][0]} ${dateInfo.currentYear}</h1>`;
     checkLeapYear();
     addDaysFromPastMonth();
     addDaysFromCurrentMonth();
@@ -97,7 +96,8 @@ function next(){
         dateInfo.currentMonth=0;
     }
     while (calendar.firstChild) {calendar.removeChild(calendar.firstChild);}
-    createCalendar();   
+    createCalendar();
+    document.documentElement.scrollTop = 0;  
 }
 
 /**
@@ -113,6 +113,7 @@ function previous(){
     }
     while (calendar.firstChild) {calendar.removeChild(calendar.firstChild);}
     createCalendar();
+    document.documentElement.scrollTop = 0;
 }
 
 
@@ -224,21 +225,25 @@ function createButtons(currentDiv, year, month, day){
     var buttonId;
     var numberOfButtons = 0;
     var timeString;
+    var buttonNum = 0;
     for(var i=doctor.startTime;i<doctor.endTime;i+=doctor.durationHours){
         timeString = getTimeString(i);
-        buttonId = `${year},${month+1},${day},${i}`;
+        if(i%1==0){
+            buttonId = `${year},${month+1},${day},${i.toFixed(1)}`;
+        }
+        else{
+            buttonId = `${year},${month+1},${day},${i}`;
+        }
         if(doctor.existingAppointments.includes(buttonId)==false){
             newButton = document.createElement("button");
             newButton.innerHTML = `${timeString[0]} - ${timeString[1]}`;
             newButton.id = buttonId;
-            newButton.className = "AppointmentButton";
+            newButton.className = `AppointmentButton${buttonNum++%4}`;
             newButton.setAttribute("onclick", "openPopup(this.id)");
             buttonDiv.appendChild(newButton);
             numberOfButtons++;
         }
     }
-    numberOfButtons *= 2.1;
-    buttonDiv.style = `margin-bottom: ${numberOfButtons}px`;
     currentDiv.appendChild(buttonDiv);
 }
 
@@ -250,7 +255,7 @@ function createButtons(currentDiv, year, month, day){
 */
 function getTimeString(timeOfDay){
     var start = convertTimeToString('' + timeOfDay);
-    var end = parseInt(timeOfDay) + doctor.durationHours;
+    var end = parseFloat(timeOfDay) + doctor.durationHours;
     if(end>doctor.endTime){
         end = doctor.endTime;
     }
@@ -272,12 +277,16 @@ function convertTimeToString(time){
         ending = 'P.M.';
     }
     if(time[1]){
-        if(time[1].length==1){
+        if(time[1]==0){
+            time[1] = '00';
+        }
+        else if(time[1].length==1){
             time[1] *= 6;
         }
         else{
             time[1] *= .6;
         }
+        
     }
     else{
         time[1] = '00';

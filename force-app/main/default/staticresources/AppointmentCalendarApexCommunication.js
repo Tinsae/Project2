@@ -3,7 +3,7 @@ var doctor = {
     name: '',
     startTime: 0,
     endTime: 0,
-    durationHours: 2.5,
+    durationHours: 0,
     daysOpen: [],
     existingAppointments: [],
     address: '',
