@@ -49,12 +49,15 @@ public with sharing class AppointmentCalendarController {
                                                     FROM Appointment__c 
                                                     WHERE Doctor__r.Id =: doctorId
                                                     AND Date__c != NULL
-                                                    AND StartTime__c != NULL];
+                                                    AND StartTime__c != NULL
+                                                    ORDER BY Date__c];
         Map<String, Object> appointmentInfo = new Map<String, Object>();
         List<String> appointmentStrings = new List<String>();
         String dateFormat;
+        Double minutes;
         for(Appointment__c app: existingAppointments){
-            dateFormat = app.Date__c.year() + ',' + app.Date__c.month() + ',' + app.Date__c.day() + ',' + app.StartTime__c.hour();
+            minutes = app.StartTime__c.minute()/60.0;
+            dateFormat = app.Date__c.year() + ',' + app.Date__c.month() + ',' + app.Date__c.day() + ',' + (app.StartTime__c.hour() + minutes);
             appointmentStrings.add(dateFormat);
             if(app.Contact__c==patientId){
                 appointmentInfo.put('patientName', app.Contact__r.Name);

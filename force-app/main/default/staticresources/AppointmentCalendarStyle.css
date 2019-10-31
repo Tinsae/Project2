@@ -5,8 +5,11 @@
     margin-right: 10vw;
 }
 
+body{
+    background-color: white;
+}
 .dayDiv{
-    border: solid 1.5px;
+    border: solid 2px black;
     text-align: center; 
     display: grid;
     grid-auto-rows: 15px auto;
@@ -17,43 +20,85 @@
 
 .buttonDiv{
     border-top: solid black 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
 }
 .buttonDiv button{
     display: block;
     width: 95%;
     font-size: 75%;
-    color: black;
-    margin-top: 4px;
+    margin-top: 2px;
     margin-left: 2.5%;
-    border-color: blue;
-    background: lightblue;
+    border: black solid 1px; 
 }
-
+.AppointmentButton0{
+    background: #e497cd;
+    color: black;
+}
+.AppointmentButton1{
+    background: #d62196;
+    color: whitesmoke;
+}
+.AppointmentButton2{
+    background: #6915cf;
+    color: whitesmoke;
+}
+.AppointmentButton3{
+    background: #380e7f;
+    color: whitesmoke;
+}
 .buttonDiv button:hover{
     color: black;
-    background: blue;
+    background: whitesmoke;
+    cursor: pointer;
 }
-
 .dateHeaders{
     font-size: 100%;
     margin-top: 2px;
+    color: black;
 }
-
 #calendarHeader{
     text-align: center;
-    font-size: 250%;
+    font-size: 350%;
+    color: black;
+    margin-top: 5px;
 }
-
 #next{
     background: whitesmoke;
     margin-left: 20px;
+    position: fixed;
+    z-index: 9999;
+    font-size: 100px;
+    top: 45%;
+    right: 5vh;
+    background: #6915cf;
+    border: black 2px solid;
+    color: whitesmoke;
+    border-radius: 5px;
+}
+#next:hover{
+    background: #e497cd;
+    cursor: pointer;
 }
 #previous{
     margin-right: 20px;
     background: whitesmoke;
+    position: fixed;
+    z-index: 9999;
+    font-size: 100px;
+    top: 45%;
+    left: 5vh;
+    background: #6915cf;
+    border: black 2px solid;
+    color: whitesmoke;
+    border-radius: 10px;
+}
+#previous:hover{
+    background-color: #e497cd;
+    cursor: pointer;
 }
 .popup{
-    background: whitesmoke;
+    background: #e497cd;
     text-align: center;
     border-width: 2px;
     border-style: solid;
@@ -64,6 +109,12 @@
     position:fixed;
     margin-left: -250px;
     margin-top: -150px;
+}
+.cancel{
+    height: 22px;
+}
+.cancel:hover{
+    cursor: pointer;
 }
 .sectionItem1{
     margin-left: 20px;
