@@ -1,0 +1,45 @@
+<apex:page controller="AppointmentCalendarController">
+    <div id="calendarHeader">  
+    </div>
+    <button onClick="previous()" id="previous">&lt;</button>
+    <button onClick="next()" id="next">&gt;</button>
+    <div id="calendar">
+    </div>
+
+    <apex:form >
+        <div id="popupDiv" class="popup" style="display: none">
+            <apex:pageBlock >
+                <apex:pageBlockSection title="Appointment Confirmation" collapsible="false" columns="2">
+                    <apex:pageBlockSectionItem >
+                        <p id="Doctor" class="sectionItem1"></p>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <p id="Patient" class="sectionItem"></p>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <p id="Date" class="sectionItem1"></p>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <p id="Address" class="sectionItem"></p>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <p id="Time" class="sectionItem1"></p>
+                    </apex:pageBlockSectionItem>  
+                </apex:pageBlockSection>
+                <div>
+                    <button class="cancel" onclick="cancel()" id="cancelButton" type="button">cancel</button>
+                    <apex:commandButton onclick="createAppointment()" action="{!redirectToHome}" value="confirm" id="confirmButton"/>
+                </div>
+            </apex:pageBlock>
+        </div>
+    </apex:form>
+    <apex:stylesheet value="{! $Resource.AppointmentCalendarStyle}"/>
+    <apex:includeScript value="{! $Resource.AppointmentCalendarJS}" loadOnReady="true"/>
+    <apex:includeScript value="{! $Resource.AppointmentCalendarApexCommunication}" loadOnReady="true"/>
+    
+    <input id="getDoctorInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getDoctorInfo}"/>
+    <input id="getAppointmentInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getAppointmentInfo}"/>
+    <input id="createAppointment" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.createAppointment}"/> 
+    <input id="doctor" type="hidden" value="{!doctor}"/>
+    <input id="patient" type="hidden" value="{!patient}"/>
+</apex:page>
