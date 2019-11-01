@@ -49,11 +49,14 @@
     </types>
     <types>
         <members>Admin</members>
+        <members>Patient User</members>
         <name>Profile</name>
     </types>
     <types>
         <members>HomePage</members>
         <members>AppointmentCalendar</members>
+        <members>CommunitiesSelfRegCustom</members>
+        <members>symptoms</members>
         <name>ApexPage</name>
     </types>
     <types>

@@ -1,8 +1,5 @@
 <apex:page controller="HomePageController">
 
-    <apex:pageBlock >
-        <apex:image value="{!$Resource.pillsHeader}" width="100%" height="300px" />
-    </apex:pageBlock>
 
     <apex:form >
         <apex:pageBlock title="My Appointments">
