@@ -5,6 +5,10 @@
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
         <members>AppointmentCalendarController</members>
+
+         <members>SymptomExtension</members>
+        <members>PossibleConditionExt</members>
+
         <name>ApexClass</name>
     </types>
     <types>
@@ -19,7 +23,7 @@
     <types>
         <members>Contact.Age__c</members>
         <members>Contact.Sex__c</members>
-        <name>CustomObject</name>
+        <name>CustomField</name>
     </types>
     <types>
         <members>Appointment__c</members>
@@ -28,6 +32,8 @@
         <members>Specialty__c</members>
         <members>Symptom__c</members>
         <members>PossibleCondition__c</members>
+        <members>Home</members>
+        <members>Symptom_Checker</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -55,7 +61,7 @@
         <members>HomePage</members>
         <members>AppointmentCalendar</members>
         <members>CommunitiesSelfRegCustom</members>
-        <members>symptoms</members>
+        <members>SymptomsChecker</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -63,6 +69,8 @@
         <members>pillHeaderSalesforce091619</members>
         <members>AppointmentCalendarJS</members>
         <members>AppointmentCalendarStyle</members>
+        <members>API</members>
+
         <name>StaticResource</name>
     </types>
     <version>46.0</version>

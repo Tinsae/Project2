@@ -26,7 +26,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>symptomExtension</apexClass>
+        <apexClass>SymptomExtension</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -560,7 +560,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>symptoms</apexPage>
+        <apexPage>SymptomsChecker</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <tabVisibilities>

@@ -3,5 +3,5 @@
     <apiVersion>47.0</apiVersion>
     <availableInTouch>true</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>symptoms</label>
+    <label>Symptoms Checker</label>
 </ApexPage>
