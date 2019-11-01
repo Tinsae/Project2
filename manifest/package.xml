@@ -11,24 +11,23 @@
         <members>Appointment__c</members>
         <members>Condition__c</members>
         <members>Doctor__c</members>
-        <!--<members>Patient__c</members>-->
         <members>Specialty__c</members>
         <members>Symptom__c</members>
         <members>PossibleCondition__c</members>
-        <members>Account</members>
-        <members>Contact</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Contact.Age__c</members>
+        <members>Contact.Sex__c</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>Appointment__c</members>
         <members>Condition__c</members>
         <members>Doctor__c</members>
-        <!--<members>Patient__c</members>-->
         <members>Specialty__c</members>
         <members>Symptom__c</members>
         <members>PossibleCondition__c</members>
-        <!--<members>Account</members>
-        <members>Contact</members>-->
         <name>CustomTab</name>
     </types>
     <types>
