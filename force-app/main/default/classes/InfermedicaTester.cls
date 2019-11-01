@@ -1,7 +1,7 @@
 public class InfermedicaTester {
     public static void test(){
         APIInput input = new APIInput();
-        input.sex = 'male';
+        input.sex = 'male'; 
         input.age = '30';
         List<Map<String, String>> Evidence = new List<Map<String, String>>();
         Evidence.add(new Map<String, String>{'id'=> 's_1277', 'choice_id'=> 'present'});

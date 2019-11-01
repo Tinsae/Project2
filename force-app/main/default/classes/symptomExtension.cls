@@ -1,13 +1,17 @@
-public class symptomExtension {    
-    public List<Symptom__c> ctrl {get;set;}
-    public Contact userContact {get;set;}
-    public List<Map<String, String>> presentingSymptoms {get;set;}
+public class SymptomExtension {    
+    public List<Symptom__c> Symptoms {get;set;}
+    public List<Map<String, String>> PresentingSymptoms {get;set;}
+    public List<Specialty__c> Specialties {get;set;}
+    public List<PossibleCondition__c> PossibleConditions {get;set;}
+    public List<String> SelectedConditions {get;set;}
 
-    public symptomExtension() {
-        ctrl = [SELECT Present__c, Name, InfermedicaId__c, OwnerId FROM Symptom__c];
+    public Contact UserContact {get;set;}
+
+    public SymptomExtension() {
+        Symptoms = [SELECT Present__c, Name, InfermedicaId__c, OwnerId FROM Symptom__c];
         String userId = UserInfo.getUserId();
         if (userId.length() > 0) {
-            userContact = [
+            UserContact = [
                 SELECT Id, Name, Age__c, Sex__c
                 FROM Contact
                 WHERE Id IN (
@@ -17,10 +21,21 @@ public class symptomExtension {
                 )
             ];
         } else {
-            userContact.LastName = 'Unknown';
-            userContact.Birthdate = Date.parse('7/22/1995');
-            userContact.Sex__c = 'male';
+            UserContact.LastName = 'Unknown';
+            UserContact.Birthdate = Date.parse('7/22/1995');
+            UserContact.Sex__c = 'male';
         }
+        PossibleConditions = [
+            SELECT 
+                Selected__c, 
+                Condition__c, 
+                Probability__c 
+            FROM 
+                PossibleCondition__c 
+            WHERE 
+                OwnerId =: userId 
+                AND 
+                Appointment__c != ''];
     }
 
     Integer count = 0;
@@ -30,9 +45,13 @@ public class symptomExtension {
             return null;
     }
 
-    public void submit() {
+    // public List<PossibleCondition__c> getPossibleConditions(){
+    //     return PossibleConditions;
+    // }
+
+    public void submitSymptoms() {
         presentingSymptoms = new List<Map<String, String>>();
-        for (Symptom__c s : ctrl) {
+        for (Symptom__c s : Symptoms) {
             if (s.Present__c == true) {
                 Map<String, String> presenting = new Map<String, String>();
                 presenting.put('id', s.InfermedicaId__c);
@@ -43,6 +62,7 @@ public class symptomExtension {
         insertPossibleConditions();
     }
 
+ 
     public void insertPossibleConditions() {
         APIInput a = new APIInput();
         a.sex = userContact.Sex__c.toLowerCase();
@@ -76,5 +96,6 @@ public class symptomExtension {
             }
             newPossibleConditions.add(p);
         } insert newPossibleConditions;
+
     }
 }

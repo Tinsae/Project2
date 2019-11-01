@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Possible_Conditions</fullName>
+    <columns>NAME</columns>
+    <columns>AppPatient__c</columns>
+    <columns>Condition__c</columns>
+    <columns>Appointment__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>All Possible Conditions</label>
+</ListView>

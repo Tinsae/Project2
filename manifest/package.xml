@@ -6,7 +6,9 @@
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
         <members>AppointmentCalendarController</members>
-        <members>symptomExtension</members>
+        <members>SymptomExtension</members>
+        <members>PossibleConditionExt</members>
+
         <name>ApexClass</name>
     </types>
     <types>
@@ -54,7 +56,10 @@
     <types>
         <members>HomePage</members>
         <members>AppointmentCalendar</members>
-        <members>symptoms</members>
+        <members>SymptomChecker</members>
+        <members>ConditionChecker</members>
+        <members>DoctorSelector</members>
+
         <name>ApexPage</name>
     </types>
     <types>

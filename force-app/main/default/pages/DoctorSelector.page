@@ -1,0 +1,58 @@
+<apex:page id="pg" controller="DoctorSelector">
+    <apex:form id="frm">
+        <apex:pageblock title="Select Doctor" id="pb">
+            <script type="text/javascript">
+                var OverlayModal;
+                var rreason = "";
+                var rcomment = "";
+                OverlayModal = new SimpleDialog("test", false);
+                OverlayModal.createDialog();
+                function openOverlay() {
+                    OverlayModal.setTitle("Overlay Example");
+                    OverlayModal.importContentNode(document.getElementById("{!$Component.OverlayModal}"));
+                    OverlayModal.show();
+                }
+                function passrreason(res) {
+                    rreason = res;
+                }
+                function passrcomment(cmnt) {
+                    rcomment = cmnt;
+                }
+                function checkreason() {
+                    if (rreason.length > 0 && rcomment.length > 0) {
+                        submitStandardPopup('Rejected', rcomment, rreason);
+                        OverlayModal.hide();
+                    }
+                    else {
+                        alert("Please Select Reason and Enter Comments");
+                    }
+                }
+            </script>
+             <apex:pageMessages id="msg" />
+             <apex:commandButton value="Show Standard Popup" onclick="openOverlay();" Oncomplete="refresh" />
+           
+             <apex:outputPanel style="display:none">
+                <apex:outputPanel id="OverlayModal" layout="block">
+                    <b>Reason &nbsp; &nbsp;&nbsp; &nbsp;</b>
+                    <apex:inputText id="reason" value="{!textReason}" onchange="passrreason(this.value);" style="width:100%; " />
+                    <br/>
+                    <br/>
+                    <b>Comment</b>
+                    <apex:inputText id="comment" value="{!textComment}" onchange="passrcomment(this.value);" onblur="passrcomment(this.value);"
+                        style="height:100px;width:100%;" />
+                    <br/>
+                    <br/>
+                    <center>
+                        <apex:commandButton value="Ok" onClick="checkreason();" />
+                        <apex:commandButton value="Cancel" onClick="OverlayModal.hide();" />
+                    </center>
+                </apex:outputPanel>
+            </apex:outputPanel>
+            <apex:actionFunction name="submitStandardPopup" action="{!submitStandardPopup}" reRender="msg">
+                <apex:param name="status" value="" />
+                <apex:param name="comment" value="" />
+                <apex:param name="reason" value="" />
+            </apex:actionFunction>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>
