@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>ProjectTwo</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>APIInput</members>
+        <members>AppointmentCalendarController</members>
+        <members>CommunitiesSelfRegController</members>
         <members>DataCreator</members>
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
-        <members>AppointmentCalendarController</members>
+        <members>symptomExtension</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Account-Account Layout</members>
+        <members>Appointment__c-Appointment Layout</members>
+        <members>Condition__c-Condition Layout</members>
+        <members>Contact-Contact Layout</members>
+        <members>Doctor__c-Doctor Layout</members>
+        <members>PossibleCondition__c-Possible Condition Layout</members>
+        <members>Specialty__c-Specialty Layout</members>
+        <members>Symptom__c-Symptom Layout</members>
+        <name>Layout</name>
     </types>
     <types>
         <members>Appointment__c</members>
         <members>Condition__c</members>
         <members>Doctor__c</members>
+        <members>PossibleCondition__c</members>
         <members>Specialty__c</members>
         <members>Symptom__c</members>
-        <members>PossibleCondition__c</members>
         <name>CustomObject</name>
     </types>
     <types>
         <members>Contact.Age__c</members>
         <members>Contact.Sex__c</members>
-        <name>CustomObject</name>
+        <name>CustomField</name>
     </types>
     <types>
-        <members>Appointment__c</members>
-        <members>Condition__c</members>
-        <members>Doctor__c</members>
-        <members>Specialty__c</members>
-        <members>Symptom__c</members>
-        <members>PossibleCondition__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>ProjectTwo</members>
-        <name>CustomApplication</name>
-    </types>
-    <types>
-        <members>Appointment__c-Appointment Layout</members>
-        <members>Condition__c-Condition Layout</members>
-        <members>Doctor__c-Doctor Layout</members>
-        <!--<members>Patient__c-Patient Layout</members>-->
-        <members>PossibleCondition__c-Possible Condition Layout</members>
-        <members>Specialty__c-Specialty Layout</members>
-        <members>Symptom__c-Symptom Layout</members>
-        <members>Account-Account Layout</members>
-        <members>Contact-Contact Layout</members>
-        <name>Layout</name>
+        <members>AppointmentCalendar</members>
+        <members>CommunitiesSelfRegCustom</members>
+        <members>HomePage</members>
+        <members>symptoms</members>
+        <name>ApexPage</name>
     </types>
     <types>
         <members>Admin</members>
@@ -52,18 +52,22 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>HomePage</members>
-        <members>AppointmentCalendar</members>
-        <members>CommunitiesSelfRegCustom</members>
-        <members>symptoms</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
         <members>AppointmentCalendarApexCommunication</members>
         <members>pillHeaderSalesforce091619</members>
         <members>AppointmentCalendarJS</members>
         <members>AppointmentCalendarStyle</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Appointment__c</members>
+        <members>Condition__c</members>
+        <members>Doctor__c</members>
+        <members>Home</members>
+        <members>PossibleCondition__c</members>
+        <members>Specialty__c</members>
+        <members>Symptom__c</members>
+        <members>Symptom_Checker</members>
+        <name>CustomTab</name>
     </types>
     <version>46.0</version>
 </Package>
