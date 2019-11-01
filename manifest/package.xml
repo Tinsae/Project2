@@ -7,11 +7,11 @@
     <types>
         <members>APIInput</members>
         <members>AppointmentCalendarController</members>
-        <members>CommunitiesSelfRegCustom</members>
+        <members>CommunitiesSelfRegController</members>
         <members>DataCreator</members>
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
-        <members>SymptomExtension</members>
+        <members>symptomExtension</members>
         <name>ApexClass</name>
     </types>
     <types>
