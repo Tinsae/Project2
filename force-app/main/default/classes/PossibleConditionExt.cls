@@ -4,9 +4,10 @@ public class PossibleConditionExt {
 	public List<String> SelectedConditions { get; set; }
 	public List<Specialty__c> Specialties { get; set; }
 	public List<SelectOption> options = new List<SelectOption>();
-
+	public Boolean isButtonVisible {get; set;}
 	public String selectedDoctor = null;
 	public PossibleConditionExt() {
+		isButtonVisible = false;
 		String userId = UserInfo.getUserId();
 		PossibleConditions = [SELECT
 						      Selected__c, 
@@ -20,12 +21,6 @@ public class PossibleConditionExt {
 	}
 
 	public List<SelectOption> getItems() {
-		// //for (Specialty__c s : Specialties) {
-		//     Integer i = 0;
-		//     while(i < 5){
-		//         options.add(new SelectOption('AAAAAAAa' + String.valueOf(i), 'AAAAAAAa' +  String.valueOf(i)));
-		//         i += 1;
-		//     }
 		return options;
 	}
 
@@ -76,6 +71,26 @@ public class PossibleConditionExt {
 		for(String key : doctorListOfConditions.keySet()) {
 			String value = key + doctorListOfConditions.get(key);
 			options.add(new SelectOption(key, value));
+		}
+		ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO, 'Selected Conditions: ' + idList);
+        ApexPages.addMessage(myMsg);
+		isButtonVisible = true;
+	
+	}
+
+	public PageReference goToAppointmentPage()
+	{
+		try{
+			String doctorName = getSelectedDoctor().split('\\(')[0].trim();
+			Id docId = [SELECT Id FROM Doctor__c WHERE Name LIKE: doctorName].get(0).Id; 
+			Id patId = UserInfo.getUserId();
+			PageReference pageRef = new PageReference('/apex/AppointmentCalendar?docId=' + docId +'&patId=' +patId);
+        	return pageRef;
+		}
+		catch(Exception ex){
+ 			ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Please Select a Condition First '  + ex.getMessage());
+            ApexPages.addMessage(myMsg);	
+			return null;	
 		}
 	}
 }

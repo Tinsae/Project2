@@ -1,24 +1,17 @@
-<apex:page controller="SymptomExtension" doctype="html-5.0">
-    <!-- standardStylesheets="false" -->
-
-    <apex:form >
+<apex:page controller="SymptomExtension" docType="html-5.0">
+    <apex:form>
         <apex:pageBlock title="{!userContact.Name} / {!userContact.Age__c} / {!userContact.Sex__c}">
-            <apex:pageBlockButtons >
+            <apex:pageBlockButtons>
                 <apex:commandButton value="Process Symptoms" action="{!submitSymptoms}" />
             </apex:pageBlockButtons>
+            <apex:pageMessages />
             <apex:pageBlockTable value="{!Symptoms}" var="s">
-                <apex:column >
+                <apex:column>
                     <apex:inputCheckbox value="{!s.Present__c}" /> </apex:column>
                 <apex:column value="{!s.Name}" />
                 <apex:column value="{!s.InfermedicaId__c}" />
                 <apex:column value="{!s.OwnerId}" />
             </apex:pageBlockTable>
         </apex:pageBlock>
-
-        <apex:outputpanel id="counter">
-            <apex:outputText value="Click Me!: {!count} {!PresentingSymptoms}" />
-            <apex:actionSupport event="onclick" action="{!incrementCounter}" rerender="counter" status="counterStatus" />
-        </apex:outputpanel>
-        <apex:actionStatus id="counterStatus" startText=" (incrementing...)" stopText=" (done)" />
     </apex:form>
 </apex:page>

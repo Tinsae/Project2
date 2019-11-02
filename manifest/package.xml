@@ -45,6 +45,7 @@
         <members>CommunitiesSelfRegCustom</members>
         <members>HomePage</members>
         <members>SymptomsChecker</members>
+        <members>ConditionChecker</members>
         <name>ApexPage</name>
     </types>
     <types>
