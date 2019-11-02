@@ -26,7 +26,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>symptomExtension</apexClass>
+        <apexClass>SymptomExtension</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <custom>true</custom>
@@ -105,31 +105,31 @@
         <field>Doctor__c.DateOfBirth__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.DaysOpen__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>false</editable>
         <field>Doctor__c.Gender__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.HourClose__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
+    </fieldPermissions> -->
+    <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.HourOpen__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
+    </fieldPermissions> -->
+    <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.Location__c</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.Sex__c</field>
@@ -275,7 +275,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>symptoms</apexPage>
+        <apexPage>SymptomsChecker</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <tabVisibilities>

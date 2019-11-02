@@ -1,0 +1,45 @@
+<apex:page id="pg" controller="PossibleConditionExt" docType="html-5.0">
+    <apex:form id="frm">
+        <apex:pageblock title="" id="pb">
+            <apex:pageMessages />
+            <script type="text/javascript">
+                function showDoctorSelection() {
+                    document.getElementById("{!$Component.OverlayModal}").style.visibility = 'visible';
+                }
+                function callApexMethod() {
+                    submitForDoctors();
+                }
+                function redirectToAppointment() {
+                    goToAppointmentPage();
+                }
+            </script>
+
+            <apex:pageBlockTable value="{!PossibleConditions}" var="pCond" title="Select a Condition">
+                <apex:column>
+                    <apex:inputCheckbox value="{!pCond.Selected__c}" /> </apex:column>
+                <apex:column value="{!pCond.Condition__c}" />
+                <apex:column value="{!pCond.Probability__c}" />
+            </apex:pageBlockTable>
+            <center>
+                <apex:commandButton value="Process Condition" onclick="callApexMethod()" />
+                <apex:commandButton value="See Doctors" onclick="showDoctorSelection()"/>
+
+            </center>
+
+            <apex:outputPanel style="visiblity:hidden">
+                <apex:outputPanel id="OverlayModal" layout="block" style="visiblity:hidden" >
+                    <apex:pageBlock title="">
+                        <apex:selectRadio value="{!SelectedDoctor}" layout="pageDirection">
+                            <apex:selectOptions value="{!Items}" />
+                        </apex:selectRadio>
+                    </apex:pageBlock>
+                    <center>
+                        <apex:commandButton  rendered = "{!isButtonVisible}" value="Book Appointment" onClick="redirectToAppointment()" />
+                    </center>
+                </apex:outputPanel>
+            </apex:outputPanel>
+            <apex:actionFunction name="submitForDoctors" action="{!submitForDoctors}" />
+            <apex:actionFunction name="goToAppointmentPage" action="{!goToAppointmentPage}" />
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

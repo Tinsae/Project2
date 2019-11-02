@@ -11,7 +11,8 @@
         <members>DataCreator</members>
         <members>HomePageController</members>
         <members>InfermedicaTester</members>
-        <members>symptomExtension</members>
+        <members>PossibleConditionExt</members>
+        <members>SymptomExtension</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -43,7 +44,8 @@
         <members>AppointmentCalendar</members>
         <members>CommunitiesSelfRegCustom</members>
         <members>HomePage</members>
-        <members>symptoms</members>
+        <members>SymptomsChecker</members>
+        <members>ConditionChecker</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -56,6 +58,8 @@
         <members>pillHeaderSalesforce091619</members>
         <members>AppointmentCalendarJS</members>
         <members>AppointmentCalendarStyle</members>
+        <members>API</members>
+
         <name>StaticResource</name>
     </types>
     <types>
