@@ -37,7 +37,7 @@
     <apex:includeScript value="{! $Resource.AppointmentCalendarJS}" loadOnReady="true"/>
     <apex:includeScript value="{! $Resource.AppointmentCalendarApexCommunication}" loadOnReady="true"/>
     
-    <input id="getDoctorInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getDoctorInfo}"/>
+    <input id="getDoctorAndPatientInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getDoctorAndPatientInfo}"/>
     <input id="getAppointmentInfo" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.getAppointmentInfo}"/>
     <input id="createAppointment" type="hidden" value="{!$RemoteAction.AppointmentCalendarController.createAppointment}"/> 
     <input id="doctor" type="hidden" value="{!doctor}"/>

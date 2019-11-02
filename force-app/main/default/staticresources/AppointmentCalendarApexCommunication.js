@@ -23,17 +23,17 @@ document.addEventListener('DOMContentLoaded', onWindowLoad(), false);
     */
 function onWindowLoad(){
     Visualforce.remoting.Manager.invokeAction(
-        document.getElementById('getDoctorInfo').value, doctor.id,function(result){
+        document.getElementById('getDoctorAndPatientInfo').value, doctor.id, patient.id, function(result){
             doctor.startTime = parseInt(result.startTime) /3600000;
             doctor.endTime = parseInt(result.endTime) / 3600000;
             doctor.name = result.doctorName;
+            patient.name = result.patientName;
             doctor.address = result.doctorAddress;
             doctor.daysOpen = result.daysOpen.split(';');
             doctor.durationHours = result.durationHours + (result.durationMinutes/60);
             Visualforce.remoting.Manager.invokeAction(
-                document.getElementById('getAppointmentInfo').value, doctor.id, patient.id, function(result){
+                document.getElementById('getAppointmentInfo').value, doctor.id, function(result){
                     doctor.existingAppointments = result.existingAppointments;
-                    patient.name = result.patientName;
                     createCalendar();
             });
         }

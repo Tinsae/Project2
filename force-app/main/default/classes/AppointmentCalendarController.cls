@@ -29,22 +29,24 @@ public with sharing class AppointmentCalendarController {
     }
 
     @RemoteAction
-    public static Map<String, Object> getDoctorInfo(String doctorId){
+    public static Map<String, Object> getDoctorAndPatientInfo(String doctorId, String patientId){
         Doctor__c doc = [SELECT Id, Name, Location__c, HourClose__c, HourOpen__c, DaysOpen__c, DurationMin__c, DurationHrs__c
                         FROM Doctor__c WHERE Id =: doctorId];
-        Map<String, Object> doctorInfo = new Map<String, Object>();
-        doctorInfo.put('startTime', doc.HourOpen__c);
-        doctorInfo.put('endTime', doc.HourClose__c);
-        doctorInfo.put('doctorName', doc.Name);
-        doctorInfo.put('doctorAddress', doc.Location__c);
-        doctorInfo.put('daysOpen', doc.DaysOpen__c);
-        doctorInfo.put('durationHours', doc.DurationHrs__c);
-        doctorInfo.put('durationMinutes', doc.DurationMin__c);
-        return doctorInfo;
+        Contact patient = [SELECT Id, Name FROM Contact WHERE Id =: patientId];
+        Map<String, Object> doctorAndPatientInfo = new Map<String, Object>();
+        doctorAndPatientInfo.put('startTime', doc.HourOpen__c);
+        doctorAndPatientInfo.put('endTime', doc.HourClose__c);
+        doctorAndPatientInfo.put('doctorName', doc.Name);
+        doctorAndPatientInfo.put('doctorAddress', doc.Location__c);
+        doctorAndPatientInfo.put('daysOpen', doc.DaysOpen__c);
+        doctorAndPatientInfo.put('durationHours', doc.DurationHrs__c);
+        doctorAndPatientInfo.put('durationMinutes', doc.DurationMin__c);
+        doctorAndPatientInfo.put('patientName', patient.Name);
+        return doctorAndPatientInfo;
     }
 
     @RemoteAction
-    public static Map<String, Object> getAppointmentInfo(String doctorId, String patientId){
+    public static Map<String, Object> getAppointmentInfo(String doctorId){
         List<Appointment__c> existingAppointments = [SELECT Doctor__r.Id, Contact__r.Name, Date__c, StartTime__c 
                                                     FROM Appointment__c 
                                                     WHERE Doctor__r.Id =: doctorId
@@ -59,9 +61,6 @@ public with sharing class AppointmentCalendarController {
             minutes = app.StartTime__c.minute()/60.0;
             dateFormat = app.Date__c.year() + ',' + app.Date__c.month() + ',' + app.Date__c.day() + ',' + (app.StartTime__c.hour() + minutes);
             appointmentStrings.add(dateFormat);
-            if(app.Contact__c==patientId){
-                appointmentInfo.put('patientName', app.Contact__r.Name);
-            }
         }
         appointmentInfo.put('existingAppointments', appointmentStrings);
         return appointmentInfo;
