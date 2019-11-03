@@ -5,6 +5,20 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Appointment__c</members>
+        <members>Condition__c</members>
+        <members>Doctor__c</members>
+        <members>PossibleCondition__c</members>
+        <members>Specialty__c</members>
+        <members>Symptom__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Contact.Age__c</members>
+        <members>Contact.Sex__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
         <members>APIInput</members>
         <members>AppointmentCalendarController</members>
         <members>CommunitiesSelfRegController</members>
@@ -26,20 +40,8 @@
         <members>Symptom__c-Symptom Layout</members>
         <name>Layout</name>
     </types>
-    <types>
-        <members>Appointment__c</members>
-        <members>Condition__c</members>
-        <members>Doctor__c</members>
-        <members>PossibleCondition__c</members>
-        <members>Specialty__c</members>
-        <members>Symptom__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>Contact.Age__c</members>
-        <members>Contact.Sex__c</members>
-        <name>CustomField</name>
-    </types>
+    
+    
     <types>
         <members>AppointmentCalendar</members>
         <members>CommunitiesSelfRegCustom</members>
