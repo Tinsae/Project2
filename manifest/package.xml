@@ -24,6 +24,7 @@
         <members>CommunitiesSelfRegController</members>
         <members>DataCreator</members>
         <members>HomePageController</members>
+        <members>InfermedicaAPIConsumer</members>
         <members>InfermedicaTester</members>
         <members>PossibleConditionExt</members>
         <members>SymptomExtension</members>

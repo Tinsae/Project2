@@ -13,7 +13,7 @@ public class InfermedicaTester {
              System.debug(condition);
          }
     }
-    public static List<Object> sendRequest(APIInput input){
+    public static List<Object> sendRequest(APIInput input, String endpoint){
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         StaticResource sr = [SELECT Id, Body FROM StaticResource WHERE Name = 'API' LIMIT 1];
@@ -24,7 +24,7 @@ public class InfermedicaTester {
         request.setHeader('App-Key', apiBodyMap.get('ApplicationKeys').toString());
         request.setHeader('Content-Type', 'application/json');
         request.setBody(JSON.serialize(input));
-        request.setEndpoint(apiBodyMap.get('EndPoint').toString());
+        request.setEndpoint(apiBodyMap.get('EndPoint').toString() + endpoint);
         request.setMethod('POST');
         
         HttpResponse response = http.send(request);
