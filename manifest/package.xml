@@ -10,6 +10,7 @@
         <members>CommunitiesSelfRegController</members>
         <members>DataCreator</members>
         <members>HomePageController</members>
+        <members>InfermedicaSymptoms</members>
         <members>InfermedicaTester</members>
         <members>symptomExtension</members>
         <name>ApexClass</name>

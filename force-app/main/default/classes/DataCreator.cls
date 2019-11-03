@@ -1,25 +1,14 @@
 public class DataCreator {
     public static void createData() {
-	deleteExistingData();
+	    deleteExistingData();
         
         createAccount();
-        createContacts();
         createDoctors();
         createConditions();
-        
-        // Lookup(Doctor)
-        // Lookup(Contact)
-        createAppointments();
-        
-        // Lookup(Appointment)
-        // Lookup(Condition)
-        createPossibleConditions();
          
         // Lookup(Doctor)
         // Lookup(Condition)
         createSpecialties();
-
-        createSymptoms();
     }
     
     private static void deleteExistingData() {
@@ -34,21 +23,8 @@ public class DataCreator {
     }
     
     private static void deleteExistingSymptoms() { delete [SELECT Id FROM Symptom__c]; }
-        private static void deleteExistingAccount() { delete [SELECT Id FROM Account WHERE Name = 'Patient Account']; }
-
-    private static void deleteExistingContacts() { 
-        delete [
-            SELECT 
-                AccountId 
-            FROM Contact
-            WHERE AccountId IN (
-                SELECT 
-                    Id 
-                FROM Account 
-                WHERE Name = 'Patient Account'
-            )
-        ]; 
-    }
+    private static void deleteExistingAccount() { delete [SELECT Id FROM Account]; }
+    private static void deleteExistingContacts() { delete [SELECT Id FROM Contact]; }
     private static void deleteExistingAppointments() { delete [SELECT Id FROM Appointment__c]; }
     private static void deleteExistingDoctors() { delete [SELECT Id FROM Doctor__c]; }
     private static void deleteExistingSpecialties() { delete [SELECT Id FROM Specialty__c]; }
@@ -58,38 +34,6 @@ public class DataCreator {
     private static void createAccount() {
         Account account = new Account(Name = 'Patient Account');
         insert account;
-    }
-
-    private static void createContacts() {
-
-        List<Contact> contacts = new List<Contact>();
-        Account account = [SELECT Id FROM Account LIMIT 1];
-
-        contacts.add(new Contact(Birthdate = Date.newInstance(1945, 01, 01)
-                                ,FirstName = 'Sylvestor'
-                                ,LastName = 'Smallone'
-                                ,Sex__c = 'Male'
-                                ,AccountId = account.Id));
-
-        contacts.add(new Contact(Birthdate = Date.newInstance(1947, 12, 07)
-                                   ,Sex__c = 'Female'
-                                   ,FirstName = 'Adrienne'
-                                   ,LastName = 'Ann'
-                                   ,AccountId = account.Id));
-
-        contacts.add(new Contact(Birthdate = Date.newInstance(2016, 10, 31)
-                                   ,Sex__c = 'Male'
-                                   ,FirstName = 'Mortem'
-                                   ,LastName = 'Hartzell'
-                                   ,AccountId = account.Id));
-
-        contacts.add(new Contact(Birthdate = Date.newInstance(1978, 12, 25)
-                                   ,Sex__c = 'Female'
-                                   ,FirstName = 'Willma'
-                                   ,LastName = 'Willy'
-                                   ,AccountId = account.Id));
-
-        insert contacts;
     }
     
     private static void createDoctors() {
@@ -139,65 +83,6 @@ public class DataCreator {
         insert doctors;
     }
     
-    private static void createConditions() {
-        
-        List<Condition__c> conditions = new List<Condition__c>();
-        
-        conditions.add(new Condition__c(InfermedicaId__c = 'c_111'
-                                       ,Description__c = ''
-                                       ,Name = 'Acne'));
-        
-        conditions.add(new Condition__c(InfermedicaId__c = 'c_132'
-                                       ,Description__c = ''
-                                       ,Name = 'Appendicitis'));
-        
-        conditions.add(new Condition__c(InfermedicaId__c = 'c_137'
-                                       ,Description__c = ''
-                                       ,Name = 'Hangover'));
-        
-        conditions.add(new Condition__c(InfermedicaId__c = 'c_127'
-                                       ,Description__c = ''
-                                       ,Name = 'Pneumonia'));
-        
-        insert conditions;
-    }
-    
-    private static void createAppointments() {
-        
-        List<Appointment__c> appointments = new List<Appointment__c>();
-        List<Contact> patients = [SELECT Id FROM Contact];
-        List<Doctor__c> doctors = [SELECT Id FROM Doctor__c];
-        Integer hour = 0;
-        
-        for (Contact patient : patients) {
-            for (Doctor__c doctor : doctors) {
-				appointments.add(new Appointment__c(Date__c = Date.today() //Date.newInstance(2019, 10, 31)
-                                    				,StartTime__c = Time.newInstance(Math.mod(hour,24), 0, 0, 0)
-                                                    ,Location__c = ''
-                                                    ,Contact__c = patient.Id
-                                                    ,Doctor__c = doctor.Id));   
-                hour++;
-            }    
-        }
-       insert appointments;
-    }
-    
-    private static void createPossibleConditions() {
-        
-        List<PossibleCondition__c> possibleConditions = new List<PossibleCondition__c>();
-        List<Appointment__c> appointments = [SELECT Id FROM Appointment__c];
-        List<Condition__c> conditions = [SELECT Id FROM Condition__c];
-        
-        for (Appointment__c appointment : appointments) {
-            for (Condition__c condition : conditions) {
-                possibleConditions.add(new PossibleCondition__c(Appointment__c = appointment.Id
-                                                               ,Condition__c = condition.Id
-                                                               ,Probability__c = Math.random() * 100));
-            }
-        }
-        insert possibleConditions;
-    }
-    
     private static void createSpecialties() {
         
         List<Specialty__c> specialties = new List<Specialty__c>();
@@ -209,29 +94,5 @@ public class DataCreator {
                                             ,Condition__c = conditions[i].Id));
         }
         insert specialties;
-    }
-
-    private static void createSymptoms() {
-        List<Symptom__c> symptoms = new List<Symptom__c>();
-
-        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1277'
-                    ,Name = 'Decreased tongue motility'));
-
-        symptoms.add(new Symptom__C(InfermedicaId__c = 's_124'
-                    ,Name = 'Scotoma, eye floaters'));
-
-        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1561'
-                    ,Name = 'Xanthoma'));
-
-        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1183'
-                    ,Name = 'Winterbottom\'s sign'));
-
-        symptoms.add(new Symptom__C(InfermedicaId__c = 's_478'
-                    ,Name = 'Facial pain'));
-
-        symptoms.add(new Symptom__C(InfermedicaId__c = 's_1283'
-                    ,Name = 'Cogwheel muscle rigidity'));
-
-        insert symptoms;
     }
 }
