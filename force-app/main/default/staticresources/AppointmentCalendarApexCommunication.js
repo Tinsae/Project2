@@ -1,44 +1,5 @@
-var doctor = {
-    id:document.getElementById("doctor").value,
-    name: '',
-    startTime: 0,
-    endTime: 0,
-    durationHours: 0,
-    daysOpen: [],
-    existingAppointments: [],
-    address: '',
-};
-var patient = {
-    id: document.getElementById("patient").value,
-    name: ''
-};
 
-
-
-document.addEventListener('DOMContentLoaded', onWindowLoad(), false);
-
-/**
-    * grab the office open and close times for the current doctor
-    * and create the calendar
-    */
-function onWindowLoad(){
-    Visualforce.remoting.Manager.invokeAction(
-        document.getElementById('getDoctorAndPatientInfo').value, doctor.id, patient.id, function(result){
-            doctor.startTime = parseInt(result.startTime) /3600000;
-            doctor.endTime = parseInt(result.endTime) / 3600000;
-            doctor.name = result.doctorName;
-            patient.name = result.patientName;
-            doctor.address = result.doctorAddress;
-            doctor.daysOpen = result.daysOpen.split(';');
-            doctor.durationHours = result.durationHours + (result.durationMinutes/60);
-            Visualforce.remoting.Manager.invokeAction(
-                document.getElementById('getAppointmentInfo').value, doctor.id, function(result){
-                    doctor.existingAppointments = result.existingAppointments;
-                    createCalendar();
-            });
-        }
-    );
-}
+window.onload = createCalendar();
 
 /**
     * call the apex function that creates an appointment
