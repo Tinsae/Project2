@@ -6,7 +6,6 @@ public with sharing class AppointmentCalendarController {
 
     public List<String> appointments{get;set;}
 
-
     public AppointmentCalendarController(){
         Id docId = ApexPages.currentPage().getParameters().get('docId');
         doctor = getDoctorInfo(docId);
@@ -14,11 +13,17 @@ public with sharing class AppointmentCalendarController {
         patient = getPatientInfo(ApexPages.currentPage().getParameters().get('patId'));
     }
 
+    /**
+    * when an appointment has been created go back to that users home page
+     */
     public PageReference redirectToHome(){
         PageReference pageRef = new PageReference('/apex/HomePage?id='+patient);
         return pageRef;
     }
 
+    /**
+    * called by javascript to create the appointment
+     */
     @RemoteAction
     public static void createAppointment(Integer year, Integer month, Integer day, List<Integer> startTime, String doctorId, String patientId){
         Appointment__c appointment = new Appointment__c();
@@ -32,6 +37,9 @@ public with sharing class AppointmentCalendarController {
         }
     }
 
+    /**
+    * return a JSON formatted string that contains all necessary information about a specified doctor
+     */
     public String getDoctorInfo(String doctorId){
         Doctor__c doc = [SELECT Id, Name, Location__c, HourClose__c, HourOpen__c, DaysOpen__c, DurationMin__c, DurationHrs__c
                         FROM Doctor__c WHERE Id =: doctorId];
@@ -48,6 +56,9 @@ public with sharing class AppointmentCalendarController {
         return JSON.serialize(doctorInfo);
     }
 
+    /**
+    * return a JSON formatted string that contains all necessary information about a specified patient
+     */
     public String getPatientInfo(String patientId){
         Contact patient = [SELECT Id, Name FROM Contact WHERE Id =: patientId];
         Map<String,Object> patientInfo = new Map<String, Object>();
@@ -56,6 +67,10 @@ public with sharing class AppointmentCalendarController {
         return JSON.serialize(patientInfo);
     }
 
+    /**
+    * return a list of all appointments for a specified doctor in 
+    * year,month,day,startTime String format
+     */
     public List<String> getAppointmentInfo(String doctorId){
         List<Appointment__c> existingAppointments = [SELECT Doctor__r.Id, Contact__r.Name, Date__c, StartTime__c 
                                                     FROM Appointment__c 

@@ -2,9 +2,11 @@ var monthInfo = [["January",31], ["February", 28], ["March",31], ["April", 30], 
                     ["July",31], ["August",31], ["September",30], ["October",31], ["November",30], ["December",31]];
 var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var endings = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
+
 var doctor = JSON.parse(document.getElementById("doctor").value)
 doctor.existingAppointments = document.getElementById("appointments").value;
 var patient = JSON.parse(document.getElementById("patient").value);
+
 var calendar = document.getElementById("calendar");
 var calendarHeader = document.getElementById("calendarHeader");
 var todaysDate = new Date();
@@ -15,7 +17,13 @@ var dateInfo = {
     dateString: ''
 }
 
+// create the calendar when the page is finished loading
+window.onload = createCalendar();
 
+/**
+ * display a confirmation window with all info about the appointment
+ * @param {*} buttonId 
+ */
 function openPopup(buttonId){
     dateInfo.dateString = buttonId;
     var dateString = dateInfo.dateString.split(',');
@@ -25,24 +33,33 @@ function openPopup(buttonId){
     var timeString = getTimeString(dateString[3]);
     document.getElementById("Time").innerHTML = `Time: ${timeString[0]} - ${timeString[1]}`;
     document.getElementById("Date").innerHTML = `Date: ${dateString[1]}/${dateString[2]}/${dateString[0]}`;
-    buttonDisable(document.getElementsByClassName("AppointmentButton"), true);
+    buttonDisable(document.getElementsByClassName("AppointmentButton0"), true);
+    buttonDisable(document.getElementsByClassName("AppointmentButton1"), true);
+    buttonDisable(document.getElementsByClassName("AppointmentButton2"), true);
+    buttonDisable(document.getElementsByClassName("AppointmentButton3"), true);
     document.getElementById("popupDiv").style.display = "grid";
 }
 
-
+/**
+ * disable or enable a list of buttons
+ * @param {*} buttons - list of buttons
+ * @param {*} disabled - boolean
+ */
 function buttonDisable(buttons, disabled){
     for(var i=0;i<buttons.length;i++){
         buttons[i].disabled = disabled;
     }
 }
 
-
-
-
-
+/**
+ * hide the popup menu 
+ */
 function cancel(){
     document.getElementById("popupDiv").style.display = "none";
-    return false;
+    buttonDisable(document.getElementsByClassName("AppointmentButton0"), false);
+    buttonDisable(document.getElementsByClassName("AppointmentButton1"), false);
+    buttonDisable(document.getElementsByClassName("AppointmentButton2"), false);
+    buttonDisable(document.getElementsByClassName("AppointmentButton3"), false);
 }
 
 
@@ -59,7 +76,9 @@ function createCalendar(){
     addDaysFromNextMonth();
 }
 
-
+/**
+ * add the days from the previous month to the calendar
+ */
 function addDaysFromPastMonth(){
     var startDay = getFirstSunday();
     if(startDay!=1){
@@ -71,12 +90,18 @@ function addDaysFromPastMonth(){
     }
 }
 
+/**
+ * add the days from the current month to the calendar
+ */
 function addDaysFromCurrentMonth(){
     for(var i=1;i<=monthInfo[dateInfo.currentMonth][1];i++){
         createDayDiv(dateInfo.currentYear, dateInfo.currentMonth, i);
     }
 }
 
+/**
+ * add the days from the next month to the calendar
+ */
 function addDaysFromNextMonth(){
     if(new Date(dateInfo.currentYear, dateInfo.currentMonth, monthInfo[dateInfo.currentMonth][1],0,0,0,0).getDay()!=6){
         var day = new Date(dateInfo.currentYear, dateInfo.currentMonth+1, 1,0,0,0,0).getDay();
@@ -226,7 +251,6 @@ function createButtons(currentDiv, year, month, day){
     var buttonDiv = document.createElement("div");
     buttonDiv.className = "buttonDiv";
     var buttonId;
-    var numberOfButtons = 0;
     var timeString;
     var buttonNum = 0;
     for(var i=doctor.startTime;i<doctor.endTime;i+=doctor.durationHours){
@@ -244,7 +268,6 @@ function createButtons(currentDiv, year, month, day){
             newButton.className = `AppointmentButton${buttonNum++%4}`;
             newButton.setAttribute("onclick", "openPopup(this.id)");
             buttonDiv.appendChild(newButton);
-            numberOfButtons++;
         }
     }
     currentDiv.appendChild(buttonDiv);
@@ -253,7 +276,7 @@ function createButtons(currentDiv, year, month, day){
 
 /**
 * returns the 12hr format of the start of the appointment in 24hr format
-* as well as the time one hour later
+* as well as the time after a sepecified duration
 * @param {*} timeOfDay start of the appointment in 24hr format
 */
 function getTimeString(timeOfDay){
@@ -267,6 +290,10 @@ function getTimeString(timeOfDay){
 }
 
 
+/**
+ * given a time in 24 hour format with minutes as a decimal return the 12 hr formatted time string
+ * @param {*} time 
+ */
 function convertTimeToString(time){
     var ending;
     time = time.split('.');
