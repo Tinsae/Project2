@@ -8,7 +8,7 @@ public class InfermedicaTester {
         Evidence.add(new Map<String, String>{'id'=> 's_478', 'choice_id'=> 'present'});
         Evidence.add(new Map<String, String>{'id'=> 's_1183', 'choice_id'=> 'present'});
         input.Evidence = Evidence;
-        List<Object> conditions = sendRequest(input);
+        List<Object> conditions = sendRequest(input, 'diagnosis');
          for (Object condition: conditions) {
              System.debug(condition);
          }
