@@ -2,6 +2,9 @@ var monthInfo = [["January",31], ["February", 28], ["March",31], ["April", 30], 
                     ["July",31], ["August",31], ["September",30], ["October",31], ["November",30], ["December",31]];
 var weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 var endings = ['th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th'];
+var doctor = JSON.parse(document.getElementById("doctor").value)
+doctor.existingAppointments = document.getElementById("appointments").value;
+var patient = JSON.parse(document.getElementById("patient").value);
 var calendar = document.getElementById("calendar");
 var calendarHeader = document.getElementById("calendarHeader");
 var todaysDate = new Date();
