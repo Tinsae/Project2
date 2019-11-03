@@ -105,7 +105,7 @@ public with sharing class HomePageController {
     public PageReference goToAppointmentWizard() {
 
         idParam = (String)userContact[0].Id;
-        String url = '/apex/symptoms?id=' + idParam;
+        String url = '/apex/SymptomsChecker?id=' + idParam;
         Pagereference pageRef = new Pagereference(url);
 
         return pageRef;
