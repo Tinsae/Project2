@@ -4,6 +4,7 @@ public class SymptomExtension {
 	public List<PossibleCondition__c> PossibleConditions { get; set; }
 	public List<String> SelectedConditions { get; set; }
 
+	
 	public Contact UserContact { get; set; }
 
 	public SymptomExtension() {
@@ -76,7 +77,7 @@ public class SymptomExtension {
 			a.sex = userContact.Sex__c.toLowerCase();
 			a.age = String.valueOf(userContact.Age__c);
 			a.evidence = presentingSymptoms;
-			List<Object> conditions = InfermedicaTester.sendRequest(a);
+			List<Object> conditions = InfermedicaTester.sendRequest(a, 'diagnosis');
 
 			List<Condition__c> newConditions = new List<Condition__c>();
 			List<Map<String, Object>> conditionList = new List<Map<String, Object>>();
@@ -87,7 +88,7 @@ public class SymptomExtension {
 				Map<String, Object> m = (Map<String, Object>) JSON.deserializeUntyped(s);
 				conditionList.add(m);
 				Condition__c c = new Condition__c();
-				c.Name = (String) m.get('name');
+				c.CommonName__c = (String) m.get('name');
 				c.InfermedicaId__c = (String) m.get('id');
 				newConditions.add(c);
 			} upsert newConditions;
