@@ -31,21 +31,21 @@ public class SymptomExtension {
 						      AND
 						      Appointment__c != ''];
 	}
-	public PageReference submitSymptoms() {
-		presentingSymptoms = new List<Map<String, String>>();
-		for (Symptom__c s :Symptoms) {
-			if(s.Present__c == true) {
-				Map<String, String> presenting = new Map<String, String>();
-				presenting.put('id', s.InfermedicaId__c);
-				presenting.put('choice_id', 'present');
-				presentingSymptoms.add(presenting);
-			}
-		}
-		ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO, 'Symptoms: ' + PresentingSymptoms);
-		ApexPages.addMessage(myMsg);
-		insertPossibleConditions();
-		return goToPossibleConditions();
-	}
+	// public PageReference submitSymptoms() {
+	// 	presentingSymptoms = new List<Map<String, String>>();
+	// 	for (Symptom__c s :Symptoms) {
+	// 		if(s.Present__c == true) {
+	// 			Map<String, String> presenting = new Map<String, String>();
+	// 			presenting.put('id', s.InfermedicaId__c);
+	// 			presenting.put('choice_id', 'present');
+	// 			presentingSymptoms.add(presenting);
+	// 		}
+	// 	}
+	// 	ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO, 'Symptoms: ' + PresentingSymptoms);
+	// 	ApexPages.addMessage(myMsg);
+	// 	insertPossibleConditions();
+	// 	return goToPossibleConditions();
+	// }
 
 	public PageReference goToPossibleConditions() {
 

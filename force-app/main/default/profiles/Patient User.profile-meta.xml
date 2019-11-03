@@ -110,11 +110,11 @@
         <field>Doctor__c.DaysOpen__c</field>
         <readable>true</readable>
     </fieldPermissions> -->
-    <fieldPermissions>
+    <!-- <fieldPermissions>
         <editable>false</editable>
         <field>Doctor__c.Gender__c</field>
         <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.HourClose__c</field>
