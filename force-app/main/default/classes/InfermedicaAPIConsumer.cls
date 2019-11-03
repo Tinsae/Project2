@@ -1,14 +1,9 @@
-public with sharing class InfermedicaSymptoms {
+public with sharing class InfermedicaAPIConsumer {
 
-    public static void requestSymptoms() {
-
-        String endpoint = 'https://api.infermedica.com/v2/conditions';
-        String method = 'GET';
+    public static void requestAPI(String endpoint, String method) {
 
         Http http = new Http();
         HttpRequest request = new HttpRequest();
-        request.setEndpoint(endpoint);
-        request.setMethod(method);
 
         StaticResource staticResource = [SELECT Id, Body FROM StaticResource WHERE Name = 'API' LIMIT 1];
 		String apiBodyString = staticResource.Body.toString();
@@ -18,11 +13,13 @@ public with sharing class InfermedicaSymptoms {
         request.setHeader('App-Key', apiBodyMap.get('ApplicationKeys').toString());
         request.setHeader('Accept', 'application/json');
         request.setHeader('Dev-Mode', 'true');
+        request.setEndpoint(apiBodyMap.get('EndPoint').toString() + endpoint);
+        request.setMethod(method);
 
         HttpResponse response = http.send(request);
 
         if (response.getStatusCode() == 200) {
-            handleResponse(response);
+            handleResponse(response, endpoint);
         }
     }
 
@@ -32,8 +29,10 @@ public with sharing class InfermedicaSymptoms {
         Parse the JSON returned into a Map<String, String>
         containing key=Id, value=Name of symptoms and export to 
         a CSV file.
+
+        String path specifies where to save the CSV file. 
      */
-    private static void handleResponse(HttpResponse response) {
+    private static void handleResponse(HttpResponse response, String path) {
                 
         List<Object> api = (List<Object>)JSON.deserializeUntyped(response.getBody());
 
@@ -45,7 +44,7 @@ public with sharing class InfermedicaSymptoms {
         // Get the name and id of each symptom and put them in a map
         Map<String, String> symptomMap = extractIdAndName(apiValues);
 
-        exportCSV(symptomMap);
+        exportCSV(symptomMap, path);
     }
 
     /**
@@ -70,7 +69,7 @@ public with sharing class InfermedicaSymptoms {
         for a symptom and the value is the name of the symptom,
         export a csv file with the header Id,Common Name
      */
-    private static void exportCSV(Map<String, String> symptomMap) {
+    private static void exportCSV(Map<String, String> symptomMap, String path) {
 
         Set<String> symptomIds = symptomMap.keySet();
         String csv = 'Id,Common Name\n';
@@ -88,11 +87,11 @@ public with sharing class InfermedicaSymptoms {
         }
 
         ContentVersion file = new ContentVersion(
-            title = 'conditions.csv',
+            title = path + '.csv',
             // VersionData is the body of the document (base64)
             // Blob is a collection of binary data stored as a single object. 
             VersionData = Blob.valueOf( csv ),
-            pathOnClient = '/conditions.csv' // complete path of the document
+            pathOnClient = '/' + path + '.csv' // complete path of the document
         );    
         insert file;
     }
