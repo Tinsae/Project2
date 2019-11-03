@@ -31,7 +31,10 @@ public class SymptomExtension {
 						      AND
 						      Appointment__c != ''];
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> b90c17e38499364b97261e39c227957d46dcedd4
 	public PageReference submitSymptoms() {
 		presentingSymptoms = new List<Map<String, String>>();
 		for (Symptom__c s :Symptoms) {
@@ -56,8 +59,30 @@ public class SymptomExtension {
         return pageRef;
     }
 
+	public PageReference goToPossibleConditions() {
 
+		String url = '/apex/ConditionChecker';
+		Pagereference pageRef = new Pagereference(url);
+
+		return pageRef;
+	}
+
+	public void submitSymptoms() {
+		presentingSymptoms = new List<Map<String, String>>();
+		for (Symptom__c s :Symptoms) {
+			if(s.Present__c == true) {
+				Map<String, String> presenting = new Map<String, String>();
+				presenting.put('id', s.InfermedicaId__c);
+				presenting.put('choice_id', 'present');
+				presentingSymptoms.add(presenting);
+			}
+		}
+		ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO, 'Symptoms: ' + PresentingSymptoms);
+		ApexPages.addMessage(myMsg);
+		insertPossibleConditions();
+	}
 	public void insertPossibleConditions() {
+
 		try{
 			APIInput a = new APIInput();
 			a.sex = userContact.Sex__c.toLowerCase();
@@ -95,4 +120,5 @@ public class SymptomExtension {
 			ApexPages.addMessage(myMsg);
 		}
 	}
+
 }
