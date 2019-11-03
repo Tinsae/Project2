@@ -8,9 +8,8 @@
             <apex:pageBlockTable value="{!Symptoms}" var="s">
                 <apex:column>
                     <apex:inputCheckbox value="{!s.Present__c}" /> </apex:column>
-                <apex:column value="{!s.Name}" />
+                <apex:column value="{!s.CommonName__c}" />
                 <apex:column value="{!s.InfermedicaId__c}" />
-                <apex:column value="{!s.OwnerId}" />
             </apex:pageBlockTable>
         </apex:pageBlock>
     </apex:form>
