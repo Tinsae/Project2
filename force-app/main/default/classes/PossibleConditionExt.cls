@@ -12,7 +12,8 @@ public class PossibleConditionExt {
 		PossibleConditions = [
 			SELECT Selected__c, Condition__c, Probability__c, Condition__r.CommonName__c
 			FROM PossibleCondition__c
-			WHERE OwnerId = :userId];
+			WHERE Appointment__c = NULL
+		];
 
 	}
 
@@ -64,7 +65,6 @@ public class PossibleConditionExt {
 					String value = key + doctorListOfConditions.get(key);
 					options.add(new SelectOption(key, value));
 				}
-				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Selected Conditions: ' + idList));
 				isButtonVisible = true;
 		} catch (Exception ex) {
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, ex.getMessage()));

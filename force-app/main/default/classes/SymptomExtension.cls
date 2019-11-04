@@ -8,7 +8,7 @@ public class SymptomExtension {
 		Symptoms = [
 			SELECT Present__c, CommonName__c, InfermedicaId__c, OwnerId 
 			FROM Symptom__c
-			LIMIT 100
+			LIMIT 1000
 		];
 		String userId = UserInfo.getUserId();
 		UserContact = [
