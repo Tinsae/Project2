@@ -116,7 +116,6 @@
         <editable>true</editable>
         <field>Doctor__c.DaysOpen__c</field>
         <readable>true</readable>
-<<<<<<< HEAD
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -129,15 +128,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-=======
-    </fieldPermissions> -->
-    <!-- <fieldPermissions>
-        <editable>false</editable>
-        <field>Doctor__c.Gender__c</field>
-        <readable>false</readable>
-    </fieldPermissions> -->
-    <!-- <fieldPermissions>
->>>>>>> Prod
         <editable>true</editable>
         <field>Doctor__c.HourClose__c</field>
         <readable>true</readable>
