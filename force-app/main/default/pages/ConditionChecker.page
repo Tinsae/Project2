@@ -16,7 +16,6 @@
             </apex:pageBlockTable>
             <center>
                 <apex:commandButton value="Process Condition" action="{!submitForDoctors}" />
-                <apex:commandButton value="See Doctors" onclick="showDoctorSelection()"/>
 
             </center>
 

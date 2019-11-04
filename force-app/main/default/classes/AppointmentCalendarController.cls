@@ -37,7 +37,7 @@ public with sharing class AppointmentCalendarController {
             for(PossibleCondition__c c: condition){
                 c.Appointment__c = appointment.Id;
             }
-            insert condition;
+            update condition;
         } catch(Exception e){
         }
     }
