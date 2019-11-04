@@ -6,12 +6,6 @@
                 function showDoctorSelection() {
                     document.getElementById("{!$Component.OverlayModal}").style.visibility = 'visible';
                 }
-                function callApexMethod() {
-                    submitForDoctors();
-                }
-                function redirectToAppointment() {
-                    goToAppointmentPage();
-                }
             </script>
 
             <apex:pageBlockTable value="{!PossibleConditions}" var="pCond" title="Select a Condition">
@@ -21,7 +15,7 @@
                 <apex:column value="{!pCond.Probability__c}" />
             </apex:pageBlockTable>
             <center>
-                <apex:commandButton value="Process Condition" onclick="callApexMethod()" />
+                <apex:commandButton value="Process Condition" action="{!submitForDoctors}" />
                 <apex:commandButton value="See Doctors" onclick="showDoctorSelection()"/>
 
             </center>
@@ -34,12 +28,11 @@
                         </apex:selectRadio>
                     </apex:pageBlock>
                     <center>
-                        <apex:commandButton  rendered = "{!isButtonVisible}" value="Book Appointment" onClick="redirectToAppointment()" />
+                        <apex:commandButton  rendered = "{!isButtonVisible}" value="Book Appointment" action="{!goToAppointmentPage}" />
                     </center>
                 </apex:outputPanel>
             </apex:outputPanel>
-            <apex:actionFunction name="submitForDoctors" action="{!submitForDoctors}" />
-            <apex:actionFunction name="goToAppointmentPage" action="{!goToAppointmentPage}" />
+    
         </apex:pageblock>
     </apex:form>
 </apex:page>
