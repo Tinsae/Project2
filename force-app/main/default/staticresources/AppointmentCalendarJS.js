@@ -273,6 +273,9 @@ function createButtons(currentDiv, year, month, day){
             }
         }
     }
+    else{
+        buttonDiv.style.height = '20px';
+    }
     currentDiv.appendChild(buttonDiv);
 }
 
