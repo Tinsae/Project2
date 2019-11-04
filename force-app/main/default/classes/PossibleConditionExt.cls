@@ -9,14 +9,10 @@ public class PossibleConditionExt {
 	public PossibleConditionExt() {
 		isButtonVisible = false;
 		String userId = UserInfo.getUserId();
-		PossibleConditions = [SELECT
-						      Selected__c, 
-						      Condition__c, 
-						      Probability__c
-						      FROM
-						      PossibleCondition__c
-						      WHERE
-						      OwnerId = :userId];
+		PossibleConditions = [
+			SELECT Selected__c, Condition__c, Probability__c, Condition__r.CommonName__c
+			FROM PossibleCondition__c
+			WHERE OwnerId = :userId];
 
 	}
 
@@ -42,17 +38,15 @@ public class PossibleConditionExt {
 						idList.add(pCond.Condition__c);
 					}
 				}
-				Specialties = [SELECT
-							Doctor__r.Name, Condition__c
-							FROM
-							Specialty__c
-							WHERE
-							Condition__c IN :idList
+				Specialties = [
+					SELECT Doctor__r.Name, Condition__r.CommonName__c
+					FROM Specialty__c
+					WHERE Condition__c IN :idList
 				];
 				Map<Id, String> condNamesMap = new Map<Id, String>();
-				for (Condition__c cc :[SELECT Id, Name FROM Condition__c]) {
+				for (Condition__c cc :[SELECT Id, CommonName__c FROM Condition__c]) {
 					if(!condNamesMap.containsKey(cc.Id)) {
-						condNamesMap.put(cc.Id, cc.Name);
+						condNamesMap.put(cc.Id, cc.CommonName__c);
 						}
 				}
 				Map<String, List<String>> doctorListOfConditions = new Map<String, List<String>>();
@@ -82,7 +76,7 @@ public class PossibleConditionExt {
 		try{
 			String doctorName = getSelectedDoctor().split('\\(')[0].trim();
 			Id docId = [SELECT Id FROM Doctor__c WHERE Name LIKE: doctorName].get(0).Id; 
-			Id patId = UserInfo.getUserId();
+			Id patId = [SELECT Id FROM Contact WHERE Id IN (SELECT ContactId FROM User WHERE Id = :UserInfo.getUserId())][0].Id;
 			PageReference pageRef = new PageReference('/apex/AppointmentCalendar?docId=' + docId +'&patId=' +patId);
         	return pageRef;
 		}
