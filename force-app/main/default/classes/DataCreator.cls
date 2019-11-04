@@ -19,11 +19,15 @@ public class DataCreator {
     }
     
     private static void deleteExistingAccount() { delete [SELECT Id FROM Account]; }
+<<<<<<< HEAD
     private static void deleteExistingContacts() {
         delete [SELECT Id FROM Opportunity];
         delete [SELECT Id FROM Case];
         delete [SELECT Id FROM Contact]; 
     }
+=======
+    private static void deleteExistingContacts() { delete [SELECT Id FROM Contact]; }
+>>>>>>> Prod
     private static void deleteExistingAppointments() { delete [SELECT Id FROM Appointment__c]; }
     private static void deleteExistingDoctors() { delete [SELECT Id FROM Doctor__c]; }
     private static void deleteExistingSpecialties() { delete [SELECT Id FROM Specialty__c]; }
