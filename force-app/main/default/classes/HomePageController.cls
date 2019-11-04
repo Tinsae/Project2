@@ -59,6 +59,7 @@ public with sharing class HomePageController {
             WHERE (Contact__c =: userContact[0].Id) 
                 AND ((Date__c < TODAY) 
                 OR (Date__c = TODAY AND StartTime__c <: currentTime))
+            ORDER BY Date__c DESC
         ];
 
         futureAppointments = [
@@ -77,6 +78,7 @@ public with sharing class HomePageController {
             WHERE (Contact__c =: userContact[0].Id) 
                 AND ((Date__c > TODAY)
                 OR (Date__c = TODAY AND StartTime__c >: currentTime))
+            ORDER BY Date__c ASC
         ];
     }
 
