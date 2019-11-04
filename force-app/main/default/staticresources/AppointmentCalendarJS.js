@@ -253,22 +253,28 @@ function createButtons(currentDiv, year, month, day){
     var buttonId;
     var timeString;
     var buttonNum = 0;
-    for(var i=doctor.startTime;i<doctor.endTime;i+=doctor.durationHours){
-        timeString = getTimeString(i);
-        if(i%1==0){
-            buttonId = `${year},${month+1},${day},${i.toFixed(1)}`;
+    var d = new Date(year, month, day, 0, 0, 0, 0);
+    if(todaysDate.getTime()<=d.getTime()){
+        for(var i=doctor.startTime;i<doctor.endTime;i+=doctor.durationHours){
+            timeString = getTimeString(i);
+            if(i%1==0){
+                buttonId = `${year},${month+1},${day},${i.toFixed(1)}`;
+            }
+            else{
+                buttonId = `${year},${month+1},${day},${i}`;
+            }
+            if(doctor.existingAppointments.includes(buttonId)==false){
+                newButton = document.createElement("button");
+                newButton.innerHTML = `${timeString[0]} - ${timeString[1]}`;
+                newButton.id = buttonId;
+                newButton.className = `AppointmentButton${buttonNum++%4}`;
+                newButton.setAttribute("onclick", "openPopup(this.id)");
+                buttonDiv.appendChild(newButton);
+            }
         }
-        else{
-            buttonId = `${year},${month+1},${day},${i}`;
-        }
-        if(doctor.existingAppointments.includes(buttonId)==false){
-            newButton = document.createElement("button");
-            newButton.innerHTML = `${timeString[0]} - ${timeString[1]}`;
-            newButton.id = buttonId;
-            newButton.className = `AppointmentButton${buttonNum++%4}`;
-            newButton.setAttribute("onclick", "openPopup(this.id)");
-            buttonDiv.appendChild(newButton);
-        }
+    }
+    else{
+        buttonDiv.style.height = '20px';
     }
     currentDiv.appendChild(buttonDiv);
 }
