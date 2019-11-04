@@ -6,7 +6,7 @@ public class SymptomExtension {
 
 	public SymptomExtension() {
 		Symptoms = [
-			SELECT Present__c, CommonName__c, InfermedicaId__c
+			SELECT Present__c, CommonName__c, InfermedicaId__c, OwnerId 
 			FROM Symptom__c
 			LIMIT 100
 		];
