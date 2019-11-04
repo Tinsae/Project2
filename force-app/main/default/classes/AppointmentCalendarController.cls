@@ -82,6 +82,7 @@ public with sharing class AppointmentCalendarController {
                                                     WHERE Doctor__r.Id =: doctorId
                                                     AND Date__c != NULL
                                                     AND StartTime__c != NULL
+                                                    AND Cancelled__c = false
                                                     ORDER BY Date__c];
         List<String> appointmentStrings = new List<String>();
         String dateFormat;
