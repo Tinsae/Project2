@@ -11,7 +11,7 @@
             <apex:pageBlockTable value="{!PossibleConditions}" var="pCond" title="Select a Condition">
                 <apex:column>
                     <apex:inputCheckbox value="{!pCond.Selected__c}" /> </apex:column>
-                <apex:column value="{!pCond.Condition__c}" />
+                <apex:column value="{!pCond.Condition__r.CommonName__c}" />
                 <apex:column value="{!pCond.Probability__c}" />
             </apex:pageBlockTable>
             <center>

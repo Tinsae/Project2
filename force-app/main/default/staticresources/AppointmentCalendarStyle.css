@@ -1,8 +1,8 @@
 #calendar{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    margin-left: 10vw;
-    margin-right: 10vw;
+    margin-left: 5vw;
+    margin-right: 7vw;
 }
 
 body{
@@ -70,7 +70,7 @@ body{
     z-index: 9999;
     font-size: 100px;
     top: 45%;
-    right: 5vh;
+    right: 6vh;
     background: #6915cf;
     border: black 2px solid;
     color: whitesmoke;
@@ -87,7 +87,7 @@ body{
     z-index: 9999;
     font-size: 100px;
     top: 45%;
-    left: 15vw;
+    left: 17vw;
     background: #6915cf;
     border: black 2px solid;
     color: whitesmoke;
@@ -98,7 +98,7 @@ body{
     cursor: pointer;
 }
 .popup{
-    background: #e497cd;
+    background: #380e7f;
     text-align: center;
     border-width: 2px;
     border-style: solid;
