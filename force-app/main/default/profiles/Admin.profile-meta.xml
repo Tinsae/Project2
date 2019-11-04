@@ -14,6 +14,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CommunitiesSelfRegController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>DataCreator</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -22,7 +26,15 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>InfermedicaAPIConsumer</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>InfermedicaTester</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PossibleConditionExt</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -54,10 +66,15 @@
         <editable>true</editable>
         <field>Appointment__c.Location__c</field>
         <readable>true</readable>
-    </fieldPermissions>]
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Appointment__c.StartTime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Condition__c.CommonName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -71,23 +88,8 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.AccountId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Contact.Age__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Birthdate</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Contact.Email</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -110,31 +112,47 @@
         <field>Doctor__c.DateOfBirth__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <!-- <fieldPermissions>
-        <editable>false</editable>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Doctor__c.DaysOpen__c</field>
+<<<<<<< HEAD
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+=======
         <readable>false</readable>
     </fieldPermissions> -->
     <!-- <fieldPermissions>
+>>>>>>> Prod
         <editable>true</editable>
-        <field>Doctor__c.Gender__c</field>
+        <field>Doctor__c.DurationHrs__c</field>
         <readable>true</readable>
+<<<<<<< HEAD
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Doctor__c.DurationMin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+=======
     </fieldPermissions> -->
     <!-- <fieldPermissions>
+>>>>>>> Prod
         <editable>true</editable>
         <field>Doctor__c.HourClose__c</field>
         <readable>true</readable>
-    </fieldPermissions> -->
-    <!-- <fieldPermissions>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.HourOpen__c</field>
         <readable>true</readable>
-    </fieldPermissions> -->
-    <!-- <fieldPermissions>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.Location__c</field>
         <readable>true</readable>
-    </fieldPermissions> -->
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Doctor__c.Sex__c</field>
@@ -156,6 +174,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>PossibleCondition__c.Selected__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Specialty__c.Condition__c</field>
         <readable>true</readable>
@@ -163,6 +186,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Specialty__c.Doctor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Symptom__c.CommonName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -205,15 +233,6 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
-        <object>Account</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
         <object>Appointment__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -224,15 +243,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Condition__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>Contact</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -276,6 +286,14 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>CommunitiesSelfRegCustom</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>ConditionChecker</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>HomePage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -313,14 +331,6 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Symptom__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>standard-Account</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>standard-Contact</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
@@ -824,10 +834,10 @@
         <enabled>true</enabled>
         <name>Packaging2</name>
     </userPermissions>
-    <!-- <userPermissions>
+    <userPermissions>
         <enabled>true</enabled>
         <name>Packaging2PromoteVersion</name>
-    </userPermissions> -->
+    </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>PrivacyDataAccess</name>
