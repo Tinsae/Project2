@@ -33,6 +33,11 @@ public with sharing class AppointmentCalendarController {
         appointment.StartTime__c = Time.newInstance(startTime[0], startTime[1],0,0);
         try{
             insert appointment;
+            List<PossibleCondition__c> condition = [SELECT Id FROM PossibleCondition__c WHERE Appointment__c =: NULL];
+            for(PossibleCondition__c c: condition){
+                c.Appointment__c = appointment.Id;
+            }
+            insert condition;
         } catch(Exception e){
         }
     }
@@ -77,6 +82,7 @@ public with sharing class AppointmentCalendarController {
                                                     WHERE Doctor__r.Id =: doctorId
                                                     AND Date__c != NULL
                                                     AND StartTime__c != NULL
+                                                    AND Cancelled__c = false
                                                     ORDER BY Date__c];
         List<String> appointmentStrings = new List<String>();
         String dateFormat;
